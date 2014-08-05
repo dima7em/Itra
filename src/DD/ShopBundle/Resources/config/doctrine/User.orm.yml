@@ -1,0 +1,29 @@
+DD\ShopBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: DD\ShopBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 255
+        firstname:
+            type: string
+            length: 255
+        lastname:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        pass:
+            type: string
+            length: 255
+        flag:
+            type: boolean
+    lifecycleCallbacks: {  }

@@ -59,25 +59,25 @@ class Role
     }
 
     /**
-     * Set вуы�description
+     * Set description
      *
-     * @param string $вуы�description
+     * @param string $description
      * @return Role
      */
-    public function setвуы�description($вуы�description)
+    public function setDescription($description)
     {
-        $this->вуы�description = $вуы�description;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get вуы�description
+     * Get description
      *
      * @return string 
      */
-    public function getвуы�description()
+    public function getDescription()
     {
-        return $this->вуы�description;
+        return $this->description;
     }
 }

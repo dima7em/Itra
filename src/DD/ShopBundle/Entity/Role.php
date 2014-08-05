@@ -22,7 +22,7 @@ class Role
     /**
      * @var string
      */
-    private description;
+    private $description;
 
 
     /**

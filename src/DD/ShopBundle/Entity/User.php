@@ -3,11 +3,12 @@
 namespace DD\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -45,11 +46,19 @@ class User
     private $flag;
 
 
+
+
+
     /**
      * Get id
      *
      * @return integer 
      */
+    public function __construct()
+    {
+
+    }
+
     public function getId()
     {
         return $this->id;
@@ -191,5 +200,40 @@ class User
     public function getFlag()
     {
         return $this->flag;
+    }
+
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
+    public function getPassword()
+    {
+
     }
 }

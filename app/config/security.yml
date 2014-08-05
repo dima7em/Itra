@@ -1,6 +1,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        DD\ShopBundle\Entity\User: sha512
 
     role_hierarchy:
         ROLE_MODERATOR:   ROLE_USER
@@ -28,6 +29,12 @@ security:
             logout:
                 path:   _demo_logout
                 target: _demo
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"

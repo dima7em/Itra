@@ -35,4 +35,9 @@ array(
 )
 );
 }
+    public function WelcomAction()
+    {
+        $user = $this->getUser();
+        return $this->render('DDShopBundle:Login:welcom.html.twig',  array('name' => $user));
+    }
 }

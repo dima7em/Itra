@@ -1,0 +1,7 @@
+dd_shop_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DDShopBundle:Default:index }
+
+DDShopBundle_user:
+    resource: "@DDShopBundle/Resources/config/routing/user.yml"
+    prefix:   /user

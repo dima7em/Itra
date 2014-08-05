@@ -1,0 +1,7 @@
+parameters:
+#    dd_shop.example.class: DD\ShopBundle\Example
+
+services:
+#    dd_shop.example:
+#        class: %dd_shop.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

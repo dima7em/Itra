@@ -1,0 +1,18 @@
+DD\ShopBundle\Entity\Role:
+    type: entity
+    table: null
+    repositoryClass: DD\ShopBundle\Entity\RoleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        вуы�description:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

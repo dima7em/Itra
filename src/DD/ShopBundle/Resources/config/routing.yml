@@ -1,3 +1,19 @@
 dd_shop_homepage:
     path:     /
     defaults: { _controller: DDShopBundle:Default:index }
+
+    DDShopBundle_category:
+        resource: "@DDShopBundle/Resources/config/routing/category.yml"
+        prefix:   /category
+
+    DDShopBundle_role:
+        resource: "@DDShopBundle/Resources/config/routing/role.yml"
+        prefix:   /role
+
+    DDShopBundle_product:
+        resource: "@DDShopBundle/Resources/config/routing/product.yml"
+        prefix:   /product
+
+    DDShopBundle_user:
+        resource: "@DDShopBundle/Resources/config/routing/user.yml"
+        prefix:   /user

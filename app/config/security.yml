@@ -8,11 +8,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        main:
+            entity: { class: DD\ShopBundle\Entity\User, property: username }
 
     firewalls:
         dev:
@@ -36,4 +33,8 @@ security:
             #    realm: "Secured Demo Area"
 
     access_control:
+        - { path: /user, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: /role, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: /category, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: /product, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

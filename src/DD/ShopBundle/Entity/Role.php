@@ -22,7 +22,7 @@ class Role
     /**
      * @var string
      */
-    private $вуы�description;
+    private description;
 
 
     /**
@@ -59,25 +59,25 @@ class Role
     }
 
     /**
-     * Set вуы�description
+     * Set вуы�description
      *
-     * @param string $вуы�description
+     * @param string $вуы�description
      * @return Role
      */
-    public function setвуы�description($вуы�description)
+    public function setвуы�description($вуы�description)
     {
-        $this->вуы�description = $вуы�description;
+        $this->вуы�description = $вуы�description;
 
         return $this;
     }
 
     /**
-     * Get вуы�description
+     * Get вуы�description
      *
      * @return string 
      */
-    public function getвуы�description()
+    public function getвуы�description()
     {
-        return $this->вуы�description;
+        return $this->вуы�description;
     }
 }

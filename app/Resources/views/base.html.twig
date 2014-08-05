@@ -4,13 +4,45 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            {% stylesheets '@DDShopBundle/Resources/public/css/*.css' %}
+            {% stylesheets 'bundles/ddshop/css/*.css' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript">
+            $(function() {
+                $("#one,#two,#three,#four,#five,#six,#seven,#eight").lavaLamp({
+                    fx: "backout",
+                    speed: 700,
+                    click: function(event, menuItem) {
+                        return false;
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript">
+
+            Cufon.replace('li a', {hover: true});
+
+        </script>
     </head>
     <body>
+        {% block header %}
+            <div class="darkmenu">
+                <ul class="darkRed" id="eight">
+                    <li class="current"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">News</a></li>
+                </ul>
+                <div class="searchbox">
+                    <form method="get" action="">
+                        <input type="text" value="" onfocus="doClear(this)" name="s" class="darksearch" />
+                    </form>
+                </div>
+            </div>
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             {% javascripts '@DDShopBundle/Resources/public/js/*.js' %}

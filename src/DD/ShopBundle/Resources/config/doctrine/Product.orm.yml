@@ -1,0 +1,26 @@
+DD\ShopBundle\Entity\Product:
+    type: entity
+    table: null
+    repositoryClass: DD\ShopBundle\Entity\ProductRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        description:
+            type: text
+        src:
+            type: string
+            length: 255
+        date:
+            type: datetime
+        lastdate:
+            type: datetime
+        flag:
+            type: boolean
+    lifecycleCallbacks: {  }

@@ -1,4 +1,0 @@
-dd_shop:
-    resource: "@DDShopBundle/Resources/config/routing.yml"
-    prefix:   /
-

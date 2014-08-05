@@ -1,5 +1,9 @@
 DD\ShopBundle\Entity\Category:
     type: entity
+    oneToMany:
+        products:
+            targetEntity: Product
+            mappedBy: category
     table: null
     repositoryClass: DD\ShopBundle\Entity\CategoryRepository
     id:

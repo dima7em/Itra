@@ -21,6 +21,7 @@ class ProductType extends AbstractType
             ->add('date')
             ->add('lastdate')
             ->add('flag')
+            ->add('category')
         ;
     }
     

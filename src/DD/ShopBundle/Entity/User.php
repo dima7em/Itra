@@ -236,4 +236,32 @@ class User implements UserInterface
     {
 
     }
+    /**
+     * @var \DD\ShopBundle\Entity\Role
+     */
+    private $role;
+
+
+    /**
+     * Set role
+     *
+     * @param \DD\ShopBundle\Entity\Role $role
+     * @return User
+     */
+    public function setRole(\DD\ShopBundle\Entity\Role $role = null)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return \DD\ShopBundle\Entity\Role 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
 }

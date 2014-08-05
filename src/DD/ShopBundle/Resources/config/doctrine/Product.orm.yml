@@ -1,5 +1,12 @@
 DD\ShopBundle\Entity\Product:
     type: entity
+    manyToOne:
+        category:
+            targetEntity: Category
+            inversedBy: products
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
     table: null
     repositoryClass: DD\ShopBundle\Entity\ProductRepository
     id:

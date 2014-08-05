@@ -35,6 +35,9 @@ class Category
      *
      * @return integer 
      */
+    public function __toString(){
+        return $this->name;
+    }
     public function getId()
     {
         return $this->id;
@@ -107,5 +110,50 @@ class Category
     public function getFlag()
     {
         return $this->flag;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $products;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add products
+     *
+     * @param \DD\ShopBundle\Entity\Product $products
+     * @return Category
+     */
+    public function addProduct(\DD\ShopBundle\Entity\Product $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Remove products
+     *
+     * @param \DD\ShopBundle\Entity\Product $products
+     */
+    public function removeProduct(\DD\ShopBundle\Entity\Product $products)
+    {
+        $this->products->removeElement($products);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

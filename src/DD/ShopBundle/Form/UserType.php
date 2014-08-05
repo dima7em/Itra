@@ -20,6 +20,7 @@ class UserType extends AbstractType
             ->add('lastname')
             ->add('email')
             ->add('pass')
+            ->add('role')
             ->add('flag')
         ;
     }

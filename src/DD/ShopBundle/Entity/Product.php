@@ -192,4 +192,32 @@ class Product
     {
         return $this->flag;
     }
+    /**
+     * @var \DD\ShopBundle\Entity\Category
+     */
+    private $category;
+
+
+    /**
+     * Set category
+     *
+     * @param \DD\ShopBundle\Entity\Category $category
+     * @return Product
+     */
+    public function setCategory(\DD\ShopBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \DD\ShopBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

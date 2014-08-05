@@ -1,5 +1,10 @@
 DD\ShopBundle\Entity\Role:
     type: entity
+    oneToMany:
+        users:
+            targetEntity: User
+            mappedBy: role
+
     table: null
     repositoryClass: DD\ShopBundle\Entity\RoleRepository
     id:

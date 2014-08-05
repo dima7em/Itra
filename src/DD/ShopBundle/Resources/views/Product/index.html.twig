@@ -12,6 +12,7 @@
                 <th>Src</th>
                 <th>Date</th>
                 <th>Lastdate</th>
+                <th>Category</th>
                 <th>Flag</th>
                 <th>Actions</th>
             </tr>
@@ -25,6 +26,7 @@
                 <td>{{ entity.src }}</td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.lastdate %}{{ entity.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.category }}</td>
                 <td>{{ entity.flag }}</td>
                 <td>
                 <ul>

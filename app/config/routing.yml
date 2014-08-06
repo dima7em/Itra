@@ -2,8 +2,4 @@ dd_shop:
     resource: "@DDShopBundle/Resources/config/routing.yml"
     prefix:   /
 
-login:
-    path:     /login
-    defaults: { _controller: DDShopBundle:Login:login }
-login_check:
-    path: /login_check
+

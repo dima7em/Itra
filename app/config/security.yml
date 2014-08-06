@@ -1,7 +1,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        DD\ShopBundle\Entity\User: sha512
+        DD\ShopBundle\Entity\User: plaintext
 
     role_hierarchy:
         ROLE_MODERATOR:   ROLE_USER

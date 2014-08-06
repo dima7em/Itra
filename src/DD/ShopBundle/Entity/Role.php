@@ -33,7 +33,7 @@ class Role
      * @return integer 
      */
     public function __toString(){
-        return $this->name;
+        return $this->role;
     }
     public function getId()
     {

@@ -1,12 +1,12 @@
 <?php
 
-namespace DD\ShopBundle\Form;
+namespace DD\ShopBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RoleType extends AbstractType
+class UserType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,13 @@ class RoleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('role')
+            ->add('username')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('email')
+            ->add('pass')
+
+
         ;
     }
     
@@ -27,7 +31,7 @@ class RoleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DD\ShopBundle\Entity\Role'
+            'data_class' => 'DD\ShopBundle\Entity\User'
         ));
     }
 
@@ -36,6 +40,6 @@ class RoleType extends AbstractType
      */
     public function getName()
     {
-        return 'dd_shopbundle_role';
+        return 'dd_shopbundle_user';
     }
 }

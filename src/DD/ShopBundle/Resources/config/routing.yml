@@ -17,3 +17,11 @@ DDShopBundle_product:
 DDShopBundle_user:
     resource: "@DDShopBundle/Resources/config/routing/user.yml"
     prefix:   /user
+
+account_register:
+    path:     /register
+    defaults: { _controller: DDShopBundle:Account:register }
+
+account_create:
+    path:     /register/create
+    defaults: { _controller: DDShopBundle:Account:create }

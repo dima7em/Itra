@@ -31,12 +31,11 @@ twig:
     form:
       resources:
          - 'DDShopBundle:Form:form.html.twig'
-
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [DDShopBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

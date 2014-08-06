@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+    {% stylesheets '@DDShopBundle/Resources/public/css/*.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    {% javascripts '@DDShopBundle/Resources/public/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

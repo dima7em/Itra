@@ -28,5 +28,8 @@ account_create:
 login:
     path:     /login
     defaults: { _controller: DDShopBundle:Login:login }
+login_to:
+    path:     /login/welcom
+    defaults: { _controller: DDShopBundle:Login:welcom }
 login_check:
     path: /login_check

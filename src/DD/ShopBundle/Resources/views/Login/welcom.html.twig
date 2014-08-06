@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    Hello {{ user }}!
+   <p> Hello {{ user.getFirstname }} {{ user.getLastname }}!</p>
+   <p> Your email :{{ user.getEmail }}</p>
+   <p> You have role : {{ user.getRole }}</p>
 {% endblock %}

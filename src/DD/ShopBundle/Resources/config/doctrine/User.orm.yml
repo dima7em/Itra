@@ -28,7 +28,7 @@ DD\ShopBundle\Entity\User:
         email:
             type: string
             length: 255
-        pass:
+        password:
             type: string
             length: 255
         flag:

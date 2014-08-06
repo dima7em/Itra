@@ -38,7 +38,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      */
-    private $pass;
+    private $password;
 
     /**
      * @var boolean
@@ -162,9 +162,9 @@ class User implements UserInterface, \Serializable
      * @param string $pass
      * @return User
      */
-    public function setPass($pass)
+    public function setPassword($password)
     {
-        $this->pass = $pass;
+        $this->password = $password;
 
         return $this;
     }
@@ -174,9 +174,9 @@ class User implements UserInterface, \Serializable
      *
      * @return string 
      */
-    public function getPass()
+    public function getPassword()
     {
-        return $this->pass;
+        return $this->password;
     }
 
     /**
@@ -232,10 +232,7 @@ class User implements UserInterface, \Serializable
      *
      * @return string The password
      */
-    public function getPassword()
-    {
 
-    }
     /**
      * @var \DD\ShopBundle\Entity\Role
      */
@@ -276,7 +273,7 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->id,
             $this->username,
-            $this->pass,
+            $this->password,
             // see section on salt below
             // $this->salt,
         ));
@@ -297,7 +294,7 @@ class User implements UserInterface, \Serializable
         list (
             $this->id,
             $this->username,
-            $this->pass,
+            $this->password,
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);

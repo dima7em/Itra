@@ -33,3 +33,5 @@ login_to:
     defaults: { _controller: DDShopBundle:Login:welcom }
 login_check:
     path: /login_check
+user_logout:
+       pattern:   /logout

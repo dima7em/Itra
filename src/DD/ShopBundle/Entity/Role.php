@@ -25,6 +25,8 @@ class Role
     private $description;
 
 
+
+
     /**
      * Get id
      *
@@ -50,6 +52,7 @@ class Role
 
         return $this;
     }
+
 
     /**
      * Get name
@@ -127,5 +130,33 @@ class Role
     public function getUsers()
     {
         return $this->users;
+    }
+    /**
+     * @var string
+     */
+    private $role;
+
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return Role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string 
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

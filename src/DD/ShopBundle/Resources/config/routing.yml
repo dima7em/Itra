@@ -20,7 +20,7 @@ DDShopBundle_user:
 
 account_register:
     path:     /register
-    defaults: { _controller: DDShopBundle:Account:register }
+    defaults: { _controller: DDShopBundle:Account:create }
 
 account_create:
     path:     /register/create

@@ -245,7 +245,7 @@ class User implements UserInterface, \Serializable
      * @param \DD\ShopBundle\Entity\Role $role
      * @return User
      */
-    public function setRole(\DD\ShopBundle\Entity\Role $role = null)
+    public function setRole(\DD\ShopBundle\Entity\Role $role = NULL )
     {
         $this->role = $role;
 

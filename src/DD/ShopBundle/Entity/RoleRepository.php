@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class RoleRepository extends EntityRepository
 {
+    public function findOneByRole ($role){
+        $q = $this->createQueryBuilder('r')
+                  ->where('r.role =:role')
+                  ->setParameter('role',$role)
+                  ->getQuery();
+        return $role= $q->getSingleResult();
+
+
+
+    }
 }

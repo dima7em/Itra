@@ -1,0 +1,19 @@
+#parameters:
+#    dd.shop.example.class: DD\ShopBundle\Example
+
+#services:
+#    dd.shop.example:
+#        class: %dd.shop.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+#        calls:
+#            - [setService, [@service_id]]
+#        tags:
+#            - { name: twig.extension }
+#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+DD\ShopBundle\Entity\Category.php:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 18

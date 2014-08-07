@@ -10,7 +10,7 @@
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-DD\ShopBundle\Entity\Category.php:
+DD\ShopBundle\Entity\Category:
     properties:
         name:
             - NotBlank: ~

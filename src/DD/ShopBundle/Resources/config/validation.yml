@@ -10,10 +10,82 @@
 #        tags:
 #            - { name: twig.extension }
 #            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+DD\ShopBundle\Entity\User:
+    properties:
+        username:
+            - NotBlank: ~
+            - Length:
+                min: 5
+                max: 18
+                minMessage: "Your user name's name must be at least {{ limit }} charracters length."
+                minMessage: "Your user name's name cannot be longer {{ limit }} charracters length."
+        email:
+            - Email:
+                message: "The email {{ value }} is not a valid email."
+        firstname:
+            - NotBlank:
+                message: "This value shoul not be blank."
+        lastname:
+            - NotBlank:
+                message: "This value shoul not be blank."
+        password:
+            - Length:
+                  min: 5
+                  max: 18
+                  minMessage: "Your user name's name must be at least {{ limit }} charracters length."
+                  minMessage: "Your user name's name cannot be longer {{ limit }} charracters length."
+            - NotBlank:
+                message: "This value shoul not be blank."
+        role:
+            - NotBlank:
+                message: "This value shoul not be blank."
+
 DD\ShopBundle\Entity\Category:
     properties:
         name:
-            - NotBlank: ~
+            - NotBlank:
+                message: "This value shoul not be blank."
             - Length:
                 min: 3
                 max: 18
+                minMessage: "Your product's name must be at least {{ limit }} charracters length."
+                minMessage: "Your product's name cannot be longer {{ limit }} charracters length."
+        description:
+            - NotBlank:
+                message: "This value shoul not be blank."
+
+DD\ShopBundle\Entity\Role:
+    properties:
+        name:
+            - NotBlank:
+                message: "This value shoul not be blank."
+            - Length:
+                min: 3
+                max: 18
+                minMessage: "Your role's name must be at least {{ limit }} charracters length."
+                minMessage: "Your role's name cannot be longer {{ limit }} charracters length."
+        description:
+            - NotBlank:
+                message: "This value shoul not be blank."
+
+DD\ShopBundle\Entity\Product:
+  properties:
+          name:
+              - NotBlank: ~
+              - Length:
+                  min: 3
+                  max: 18
+                  minMessage: "Your role's name must be at least {{ limit }} charracters length."
+                  minMessage: "Your role's name cannot be longer {{ limit }} charracters length."
+          description:
+              - NotBlank:
+                  message: "This value shoul not be blank."
+          date:
+              - DateTime:
+                  message: "This value is not a valid datetime."
+          lastdate:
+              - Date:
+                  message: "This value is not a valid date."
+          category:
+              - NotBlank:
+                  message: "This value shoul not be blank."

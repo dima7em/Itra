@@ -42,6 +42,7 @@ class Role
 
     /**
      * Set name
+     * ekfjlkjsdf
      *
      * @param string $name
      * @return Role

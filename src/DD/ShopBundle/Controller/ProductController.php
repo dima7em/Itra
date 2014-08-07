@@ -12,6 +12,7 @@ use DD\ShopBundle\Form\ProductType;
  * Product controller.
  *
  */
+
 class ProductController extends Controller
 {
 

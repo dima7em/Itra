@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'DDShopBundle::layout.html.twig' %}
 
 {% block body -%}
     <h1>User</h1>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th>Pass</th>
-                <td>{{ entity.pass }}</td>
+                <td>{{ entity.password }}</td>
             </tr>
             <tr>
                 <th>Role</th>

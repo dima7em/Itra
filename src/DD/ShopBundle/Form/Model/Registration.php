@@ -8,9 +8,10 @@ use DD\ShopBundle\Entity\User;
 class Registration
 {
     /**
-     * @Assert\Type(type="Acme\AccountBundle\Entity\User")
+     *@Assert\Type(type="DD\ShopBundle\Entity\User")
      * @Assert\Valid()
      */
+
     protected $user;
 
     /**

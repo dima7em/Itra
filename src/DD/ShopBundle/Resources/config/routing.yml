@@ -2,6 +2,7 @@ dd_shop_homepage:
     path:     /
     defaults: { _controller: DDShopBundle:Default:index }
 
+
 DDShopBundle_category:
     resource: "@DDShopBundle/Resources/config/routing/category.yml"
     prefix:   /category
@@ -28,10 +29,12 @@ account_create:
 login:
     path:     /login
     defaults: { _controller: DDShopBundle:Login:login }
-login_to:
-    path:     /login/welcom
-    defaults: { _controller: DDShopBundle:Login:welcom }
+
 login_check:
     path: /login_check
 user_logout:
        pattern:   /logout
+index:
+    path:     /index
+    defaults: { _controller: DDShopBundle:Index:index }
+

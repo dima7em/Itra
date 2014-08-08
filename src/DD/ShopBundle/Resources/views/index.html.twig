@@ -1,0 +1,16 @@
+{% extends 'DDShopBundle::layout.html.twig' %}
+
+{% block body -%}
+
+    <div class="text-center">
+
+        <div class="text-center">
+            {{ knp_menu_render('DDShopBundle:Builder:mainMenu') }}
+
+        </div>
+        <p> Hello {{ user.getFirstname }} {{ user.getLastname }}!</p>
+        <p> Your email :{{ user.getEmail }}</p>
+        <p> You have role : {{ user.getRole }}</p>
+        <p><a href="{{ path('user_logout') }}">Logout</a></p>
+    </div>
+{% endblock %}

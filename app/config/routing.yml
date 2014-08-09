@@ -1,5 +1,7 @@
-dd_shop:
-    resource: "@DDShopBundle/Resources/config/routing.yml"
-    prefix:   /
+#dd_shop:
+#    resource: "@DDShopBundle/Resources/config/routing.yml"
+#    prefix:   /
 
-
+hello:
+    resource: "@AcmeDemoBundle/Resources/config/routing.yml"
+    prefix: /

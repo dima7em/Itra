@@ -1,0 +1,5 @@
+{% for article in articles %}
+    <a href="/article/{{ article.slug }}">
+        {{ article.title }}
+    </a>
+{% endfor %}

@@ -38,7 +38,7 @@ class AccountController extends Controller
 
             }
 
-            }
+        }
 
 
 

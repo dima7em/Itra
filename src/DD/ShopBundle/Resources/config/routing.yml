@@ -35,3 +35,9 @@ login_check:
     path: /login_check
 user_logout:
        pattern:   /logout
+replace_pass:
+    path:     /replacepass
+    defaults: { _controller: DDShopBundle:Replacepass:replace }
+new_pass:
+    path:     /newpass/{id}/{key}
+    defaults: { _controller: DDShopBundle:Newpass:new }

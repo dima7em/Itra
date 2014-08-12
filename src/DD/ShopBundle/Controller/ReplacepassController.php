@@ -27,14 +27,21 @@ class ReplacepassController extends Controller
 
             if ($form->isValid()) {
 
-                $username=$form->getData()['username'];
-                $email=$form->getData()['email'];
+                $username = $form->getData()['username'];
+                $email = $form->getData()['email'];
                 //echo($username." ".$email);
-                $user=new User();
+                //$user=new User();
+                $key = sha1(uniqid($email, true));
                 $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
-                if($repository->findOneBy(array('username'=>$username, 'email'=>$email)))
+                if($user = $repository->findOneBy(array('username'=>$username, 'email'=>$email)))
                 {
-                    $this->sendEmail();
+                    $id = $user->getId();
+                    //echo($key);
+                    $url = $this->container->get('router')->getContext()->getHost().
+                        $this->generateUrl(
+                            'new_pass',
+                            array('id'=>$id, 'key'=>$key));
+                    $this->sendEmail($id, $url);
                 }
                 else echo('folse');
             }
@@ -46,13 +53,13 @@ class ReplacepassController extends Controller
         );
 
     }
-    private  function sendEmail()
+    private  function sendEmail($id, $url)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email1')
             ->setFrom('semynovich.dmitriy@gmail.com')
             ->setTo('dima_7em@mail.ru')
-            ->setBody('Here is the message itself')
+            ->setBody("<a href='".$url."'/>")
         ;
         $this->get('mailer')->send($message);
 

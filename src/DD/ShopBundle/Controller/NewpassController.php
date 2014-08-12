@@ -2,13 +2,14 @@
 namespace DD\ShopBundle\Controller;
 
 use DD\ShopBundle\Entity\User;
+use JsonSchema\Constraints\Object;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class NewpassController extends Controller
 {
 
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id, $key)
     {
         $password = array('message'=>'Type your message here');
         $form = $this->createFormBuilder($password)
@@ -19,20 +20,28 @@ class NewpassController extends Controller
             ->add('save', 'submit', array('label' => 'Create Post'))
             ->getForm();
 
-        if($request->getMethod()=='POST'){
-            $form->bind($request);
+        $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
 
-            if ($form->isValid())
-            {
-                echo('valid');
+        if($user = $repository->findOneBy(array('id'=>$id)))
+        {
+            if($request->getMethod()=='POST'){
+                //echo('sd');
+                $form->bind($request);
+                if ($form->isValid())
+                {
+                    //$em = $this->getDoctrine()->getEntityManagers();
+                    $password = $form->getData()['Password'];
+                    $user->setPassword($password);
+                    $this->getDoctrine()->getEntityManager()->flush();
+                    echo($password);
+                }
+                else('fuck');
             }
+
+            return $this->render(
+                'DDShopBundle:Replacepass:new.html.twig',
+                array('form' => $form->createView()));
         }
-
-        return $this->render(
-            'DDShopBundle:Replacepass:new.html.twig',
-            array('form' => $form->createView())
-        );
+        else echo('fuck0');
     }
-
-
 }

@@ -26,21 +26,23 @@ class ReplacepassController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-
                 $username = $form->getData()['username'];
                 $email = $form->getData()['email'];
                 //echo($username." ".$email);
                 //$user=new User();
-                $key = sha1(uniqid($email, true));
+
+
                 $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
                 if($user = $repository->findOneBy(array('username'=>$username, 'email'=>$email)))
                 {
                     $id = $user->getId();
-                    //echo($key);
+                    $passkey = sha1(uniqid($email, true));
+                    $user->setPasskey($passkey);
+                    $this->getDoctrine()->getEntityManager()->flush();
                     $url = $this->container->get('router')->getContext()->getHost().
                         $this->generateUrl(
                             'new_pass',
-                            array('id'=>$id, 'key'=>$key));
+                            array('id'=>$id, 'passkey'=>$passkey));
                     $this->sendEmail($id, $url);
                 }
                 else echo('folse');
@@ -59,7 +61,7 @@ class ReplacepassController extends Controller
             ->setSubject('Hello Email1')
             ->setFrom('semynovich.dmitriy@gmail.com')
             ->setTo('dima_7em@mail.ru')
-            ->setBody("<a href='".$url."'/>")
+            ->setBody($this->renderView('DDShopBundle:Replacepass:email.txt.twig', array('url'=>$url)), 'text/html')
         ;
         $this->get('mailer')->send($message);
 

@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class NewpassController extends Controller
 {
 
-    public function newAction(Request $request, $id, $key)
+    public function newAction(Request $request, $id, $passkey)
     {
         $password = array('message'=>'Type your message here');
         $form = $this->createFormBuilder($password)
@@ -22,7 +22,7 @@ class NewpassController extends Controller
 
         $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
 
-        if($user = $repository->findOneBy(array('id'=>$id)))
+        if($user = $repository->findOneBy(array('id'=>$id, 'passkey'=>$passkey)))
         {
             if($request->getMethod()=='POST'){
                 //echo('sd');
@@ -33,15 +33,15 @@ class NewpassController extends Controller
                     $password = $form->getData()['Password'];
                     $user->setPassword($password);
                     $this->getDoctrine()->getEntityManager()->flush();
-                    echo($password);
+                    //echo($password);
                 }
-                else('fuck');
+                else{};
             }
 
             return $this->render(
                 'DDShopBundle:Replacepass:new.html.twig',
                 array('form' => $form->createView()));
         }
-        else echo('fuck0');
+        else {};
     }
 }

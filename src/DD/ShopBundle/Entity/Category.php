@@ -156,4 +156,32 @@ class Category
     {
         return $this->products;
     }
+    /**
+     * @var \DD\ShopBundle\Entity\Recource
+     */
+    private $resource;
+
+
+    /**
+     * Set resource
+     *
+     * @param \DD\ShopBundle\Entity\Resource $resource
+     * @return Category
+     */
+    public function setResource(\DD\ShopBundle\Entity\Resource $resource = null)
+    {
+        $this->resource = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Get resource
+     *
+     * @return \DD\ShopBundle\Entity\Recource 
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
 }

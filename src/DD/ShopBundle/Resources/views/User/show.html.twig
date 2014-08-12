@@ -1,4 +1,4 @@
-{% extends 'DDShopBundle::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block body -%}
     <h1>User</h1>
@@ -26,12 +26,12 @@
                 <td>{{ entity.email }}</td>
             </tr>
             <tr>
-                <th>Pass</th>
+                <th>Password</th>
                 <td>{{ entity.password }}</td>
             </tr>
             <tr>
-                <th>Role</th>
-                <td>{{ entity.role }}</td>
+                <th>Passkey</th>
+                <td>{{ entity.passkey }}</td>
             </tr>
             <tr>
                 <th>Flag</th>

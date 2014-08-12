@@ -1,0 +1,6 @@
+{% for article in resource %}
+<ul>{{ article.getName() }}
+    {% for ar in article.getcategory() %}
+    <li> {{ ar }}</li></ul
+    {% endfor %}
+{% endfor %}

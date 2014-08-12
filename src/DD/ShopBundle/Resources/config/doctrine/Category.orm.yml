@@ -4,6 +4,13 @@ DD\ShopBundle\Entity\Category:
         products:
             targetEntity: Product
             mappedBy: category
+    manyToOne:
+        resource:
+            targetEntity: Resource
+            inversedBy: category
+            joinColumn:
+                name: resource_id
+                referencedColumnName: id
     table: null
     repositoryClass: DD\ShopBundle\Entity\CategoryRepository
     id:

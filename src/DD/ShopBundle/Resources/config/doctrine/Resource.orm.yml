@@ -1,0 +1,22 @@
+DD\ShopBundle\Entity\Resource:
+    type: entity
+    oneToMany:
+        category:
+            targetEntity: Category
+            mappedBy: resource
+    table: null
+    repositoryClass: DD\ShopBundle\Entity\ResourceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

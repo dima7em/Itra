@@ -41,3 +41,9 @@ replace_pass:
 new_pass:
     path:     /newpass/{id}/{passkey}
     defaults: { _controller: DDShopBundle:Newpass:new }
+category_tree:
+    path:     /tree
+    defaults: { _controller: DDShopBundle:Categorytree:tree }
+DDShopBundle_resource:
+    resource: "@DDShopBundle/Resources/config/routing/resource.yml"
+    prefix:   /resource

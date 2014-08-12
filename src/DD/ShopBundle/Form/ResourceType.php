@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryType extends AbstractType
+class ResourceType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -17,8 +17,6 @@ class CategoryType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('flag')
-            ->add('resource')
         ;
     }
     
@@ -28,7 +26,7 @@ class CategoryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'DD\ShopBundle\Entity\Category'
+            'data_class' => 'DD\ShopBundle\Entity\Resource'
         ));
     }
 
@@ -37,6 +35,6 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'dd_shopbundle_category';
+        return 'dd_shopbundle_resource';
     }
 }

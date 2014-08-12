@@ -299,4 +299,32 @@ class User implements UserInterface, \Serializable
             // $this->salt
             ) = unserialize($serialized);
     }
+    /**
+     * @var string
+     */
+    private $passkey;
+
+
+    /**
+     * Set passkey
+     *
+     * @param string $passkey
+     * @return User
+     */
+    public function setPasskey($passkey)
+    {
+        $this->passkey = $passkey;
+
+        return $this;
+    }
+
+    /**
+     * Get passkey
+     *
+     * @return string 
+     */
+    public function getPasskey()
+    {
+        return $this->passkey;
+    }
 }

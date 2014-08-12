@@ -36,9 +36,6 @@ DD\ShopBundle\Entity\User:
                   minMessage: "Your user name's name cannot be longer {{ limit }} charracters length."
             - NotBlank:
                 message: "This value shoul not be blank."
-        role:
-            - NotBlank:
-                message: "This value shoul not be blank."
 
 DD\ShopBundle\Entity\Category:
     properties:
@@ -84,7 +81,7 @@ DD\ShopBundle\Entity\Product:
               - DateTime:
                   message: "This value is not a valid datetime."
           lastdate:
-              - Date:
+              - DateTime:
                   message: "This value is not a valid date."
           category:
               - NotBlank:

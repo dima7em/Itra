@@ -31,6 +31,9 @@ DD\ShopBundle\Entity\User:
         password:
             type: string
             length: 255
+        passkey:
+            type: string
+            length: 255
         flag:
             type: boolean
     lifecycleCallbacks: {  }

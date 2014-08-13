@@ -1,15 +1,13 @@
-{% extends '::base.html.twig' %}
+{% extends 'DDShopBundle::layout.html.twig' %}
 
-{% block body -%}
+{% block form_echo %}
     <h1>User creation</h1>
-
     {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('user') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
 {% endblock %}

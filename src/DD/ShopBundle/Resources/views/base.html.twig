@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@DDShopBundle/Resources/public/css/*.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body%}
+    {{ parent() }}
+    {% block head %}{% endblock %}
+    {% block content %}
+        {% block tree %}{% endblock %}
+        <div class="container text-center form-horizontal">
+            {% block form_echo %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@DDShopBundle/Resources/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

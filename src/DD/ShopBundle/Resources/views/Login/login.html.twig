@@ -1,4 +1,4 @@
-{% extends 'DDShopBundle::layout.html.twig' %}
+{% extends 'DDShopBundle::base.html.twig' %}
 
 {% block body -%}
     {% if error %}
@@ -18,7 +18,7 @@
             is redirected to on success (more details below)
             <input type="hidden" name="_target_path" value="/account" />
         #}
-        <input type="hidden" name="_target_path" value="/index" />
+        <input type="hidden" name="_target_path" value="/login/welcom" />
 
         <button class="btn-primary btn btn-block" type="submit">login</button>
     </form>

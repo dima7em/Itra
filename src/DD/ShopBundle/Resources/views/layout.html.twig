@@ -17,7 +17,7 @@
 
 {% block javascripts %}
 {{ parent() }}
-    {% javascripts '@DDShopBundle/Resources/public/js/*.js' %}
+    {% javascripts '@DDShopBundle/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

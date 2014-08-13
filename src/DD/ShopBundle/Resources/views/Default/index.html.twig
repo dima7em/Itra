@@ -3,6 +3,36 @@
 {% block body -%}
 
 <div class="text-center">
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+
+                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <!-- Be sure to leave the brand out there if you want it shown -->
+                <a class="brand" href="#">DDShopBundle</a>
+
+                <!-- Everything you want hidden at 940px or less, place within here -->
+                <div class="nav-collapse">
+                    {{ knp_menu_render('DDShopBundle:Builder:mainMenu') }}
+                </div>
+                <form class="navbar-search pull-left" action="">
+
+                    <input class="search-query span1" type="text" placeholder="Search"></input>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     {{ name }}!
     <div class="text-center">
 

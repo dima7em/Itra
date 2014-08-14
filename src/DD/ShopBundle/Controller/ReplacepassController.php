@@ -2,7 +2,6 @@
 namespace DD\ShopBundle\Controller;
 
 use DD\ShopBundle\Entity\User;
-use JsonSchema\Constraints\Object;
 use Symfony\Component\Form\Extension\Validator\Constraints\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,8 +26,10 @@ class ReplacepassController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-                $username = $form->getData()['username'];
-                $email = $form->getData()['email'];
+                $username = $form->getData();
+                $username = $username['username'];
+                $email = $form->getData();
+                $email = $email['email'];
                 $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
                 if($user = $repository->findOneBy(array('username'=>$username, 'email'=>$email)))
                 {

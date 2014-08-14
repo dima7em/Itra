@@ -10,13 +10,10 @@ class Builder extends ContainerAware
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
-
+        $menu->setChildrenAttribute('class', 'nav');
         $menu->addChild('Home', array('route' => 'dd_shop_homepage'));
-
-
-
-
-        // ... add more children
+        $menu->addChild('Catalog', array('route' => 'dd_shop_homepage'));
+        $menu->addChild('Account', array('route' => 'dd_shop_homepage'));
 
         return $menu;
     }

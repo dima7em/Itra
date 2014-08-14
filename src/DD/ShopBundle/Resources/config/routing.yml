@@ -35,12 +35,6 @@ login_check:
     path: /login_check
 user_logout:
        pattern:   /logout
-replace_pass:
-    path:     /replacepass
-    defaults: { _controller: DDShopBundle:Replacepass:replace }
-new_pass:
-    path:     /newpass/{id}/{passkey}
-    defaults: { _controller: DDShopBundle:Newpass:new }
 category_tree:
     path:     /tree
     defaults: { _controller: DDShopBundle:Categorytree:tree }
@@ -50,3 +44,6 @@ DDShopBundle_resource:
 index:
     path: /index
     defaults: { _controller: DDShopBundle:Index:index }
+replace_pass:
+    path:     /replacepass
+    defaults: { _controller: DDShopBundle:Replacepass:replace }

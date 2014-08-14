@@ -10,13 +10,12 @@
 {% block body%}
     {{ parent() }}
     {% block head %}{% endblock %}
-    {% block content %}
-        {% block tree %}{% endblock %}
-        <div class="container text-center form-horizontal">
-            {% block form_echo %}
-            {% endblock %}
-        </div>
-    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block tree %}{% endblock %}
+    <div class="container text-center form-horizontal">
+        {% block form_echo %}
+        {% endblock %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}

@@ -33,7 +33,7 @@ class CategorytreeController extends Controller
 
         foreach($resource as $d)
         {
-           $a=$menu ->addChild($d->getName())->setAttribute('dropdown', true);
+           $a=$menu ->addChild($d->getName())->setAttribute('dropdown', true)->setAttribute('class', true);
             foreach($d->getCategory() as $c)
             {
                 $a->addChild($c->getName())->setAttribute('divider_append', true);

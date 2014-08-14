@@ -47,3 +47,6 @@ category_tree:
 DDShopBundle_resource:
     resource: "@DDShopBundle/Resources/config/routing/resource.yml"
     prefix:   /resource
+index:
+    path: /index
+    defaults: { _controller: DDShopBundle:Index:index }

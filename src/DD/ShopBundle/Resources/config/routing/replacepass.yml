@@ -9,4 +9,4 @@ message:
     defaults: { _controller: DDShopBundle:Replacepass:message }
 new:
     path:     /newpass/{id}/{passkey}
-    defaults: { _controller: DDShopBundle:Newpass:new }
+    defaults: { _controller: DDShopBundle:Replacepass:new }

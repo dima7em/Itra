@@ -47,3 +47,6 @@ index:
 replace_pass:
     path:     /replacepass
     defaults: { _controller: DDShopBundle:Replacepass:replace }
+new_pass:
+    path:     /newpass/{id}/{passkey}
+    defaults: { _controller: DDShopBundle:Newpass:new }

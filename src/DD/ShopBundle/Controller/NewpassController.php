@@ -30,7 +30,8 @@ class NewpassController extends Controller
                 if ($form->isValid())
                 {
                     //$em = $this->getDoctrine()->getEntityManagers();
-                    $password = $form->getData()['Password'];
+                    $password = $form->getData();
+                    $password = $password['Password'];
                     $user->setPassword($password);
                     $this->getDoctrine()->getEntityManager()->flush();
                     //echo($password);

@@ -1,0 +1,30 @@
+resource:
+    path:     /
+    defaults: { _controller: "DDShopBundle:Resource:index" }
+
+resource_show:
+    path:     /{id}/show
+    defaults: { _controller: "DDShopBundle:Resource:show" }
+
+resource_new:
+    path:     /new
+    defaults: { _controller: "DDShopBundle:Resource:new" }
+
+resource_create:
+    path:     /create
+    defaults: { _controller: "DDShopBundle:Resource:create" }
+    requirements: { _method: post }
+
+resource_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DDShopBundle:Resource:edit" }
+
+resource_update:
+    path:     /{id}/update
+    defaults: { _controller: "DDShopBundle:Resource:update" }
+    requirements: { _method: post|put }
+
+resource_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DDShopBundle:Resource:delete" }
+    requirements: { _method: post|delete }

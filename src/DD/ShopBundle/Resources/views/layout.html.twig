@@ -1,6 +1,5 @@
 {% extends 'DDShopBundle::base.html.twig' %}
 {% block head %}
-    <div class="text-center">
 
         <div class="navbar">
             <div class="navbar-inner">
@@ -23,12 +22,26 @@
                     <form class="navbar-search pull-left" action="">
 
                         <input class="search-query span1" type="text" placeholder="Search"></input>
-
                     </form>
+
+                        <ul class="dropdown-menu">
+                        {{ knp_menu_render('DDShopBundle:Builder:AdminMenu') }}
+</ul>
+                  {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+                                 {{ knp_menu_render('DDShopBundle:Builder:AdminMenu') }}
+                        </li>
+                    </ul>
+    {% endif %}
                 </div>
             </div>
         </div>
-    </div>
+
+
+
+
 {% endblock %}
 {% block error %}
     {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -36,5 +49,3 @@
     {% endfor %}
 {% endblock %}
 {% block content %}{% endblock %}
-
-

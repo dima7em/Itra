@@ -1,13 +1,8 @@
 <?php
-
 namespace DD\ShopBundle\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
-
-
 /**
  * User
  */
@@ -17,53 +12,39 @@ class User implements UserInterface, \Serializable
      * @var integer
      */
     private $id;
-
     /**
      * @var string
      */
     private $username;
-
     /**
      * @var string
      */
     private $firstname;
-
     /**
      * @var string
      */
     private $lastname;
-
     /**
      * @var string
      */
     private $email;
-
     /**
      * @var string
      */
     private $password;
-
     /**
      * @var boolean
      */
     private $flag;
-
-
-
-
-
     /**
      * Get id
      *
      * @return integer
      */
-
-
     public function getId()
     {
         return $this->id;
     }
-
     /**
      * Set username
      *
@@ -73,7 +54,6 @@ class User implements UserInterface, \Serializable
     public function setUsername($username)
     {
         $this->username = $username;
-
         return $this;
     }
     /**
@@ -85,7 +65,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->username;
     }
-
     /**
      * Set firstname
      *
@@ -95,10 +74,8 @@ class User implements UserInterface, \Serializable
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
-
         return $this;
     }
-
     /**
      * Get firstname
      *
@@ -108,7 +85,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->firstname;
     }
-
     /**
      * Set lastname
      *
@@ -118,10 +94,8 @@ class User implements UserInterface, \Serializable
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
-
         return $this;
     }
-
     /**
      * Get lastname
      *
@@ -131,7 +105,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->lastname;
     }
-
     /**
      * Set email
      *
@@ -141,10 +114,8 @@ class User implements UserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * Get email
      *
@@ -154,7 +125,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->email;
     }
-
     /**
      * Set pass
      *
@@ -164,10 +134,8 @@ class User implements UserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
-
     /**
      * Get pass
      *
@@ -177,7 +145,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->password;
     }
-
     /**
      * Set flag
      *
@@ -187,10 +154,8 @@ class User implements UserInterface, \Serializable
     public function setFlag($flag)
     {
         $this->flag = $flag;
-
         return $this;
     }
-
     /**
      * Get flag
      *
@@ -200,26 +165,18 @@ class User implements UserInterface, \Serializable
     {
         return $this->flag;
     }
-
-
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
+// you *may* need a real salt depending on your encoder
+// see section on salt below
         return null;
     }
-
-
-
     /**
      * @inheritDoc
      */
     public function eraseCredentials()
     {
     }
-
-
-
     /**
      * Returns the password used to authenticate the user.
      *
@@ -228,13 +185,10 @@ class User implements UserInterface, \Serializable
      *
      * @return string The password
      */
-
     /**
      * @var \DD\ShopBundle\Entity\Role
      */
     private $role;
-
-
     /**
      * Set role
      *
@@ -244,10 +198,8 @@ class User implements UserInterface, \Serializable
     public function setRole(\DD\ShopBundle\Entity\Role $role = NULL )
     {
         $this->role = $role;
-
         return $this;
     }
-
     /**
      * Get role
      *
@@ -257,17 +209,14 @@ class User implements UserInterface, \Serializable
     {
         return $this->role;
     }
-
     public function __construct()
     {
         $this->role = new ArrayCollection();
     }
     public function getRoles()
     {
-
         return array($this->getRole()->getName());
     }
-
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * String representation of object
@@ -281,13 +230,10 @@ class User implements UserInterface, \Serializable
             $this->username,
             $this->password,
             $this->role,
-
-            // see section on salt below
-            // $this->salt,
+// see section on salt below
+// $this->salt,
         ));
-
     }
-
     /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * Constructs the object
@@ -304,17 +250,14 @@ class User implements UserInterface, \Serializable
             $this->username,
             $this->password,
             $this->role,
-
-            // see section on salt below
-            // $this->salt
+// see section on salt below
+// $this->salt
             ) = unserialize($serialized);
     }
     /**
      * @var string
      */
     private $passkey;
-
-
     /**
      * Set passkey
      *
@@ -324,10 +267,8 @@ class User implements UserInterface, \Serializable
     public function setPasskey($passkey)
     {
         $this->passkey = $passkey;
-
         return $this;
     }
-
     /**
      * Get passkey
      *

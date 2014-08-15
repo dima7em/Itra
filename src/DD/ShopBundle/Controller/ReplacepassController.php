@@ -78,6 +78,7 @@ class ReplacepassController extends Controller
     public function messageAction(){
         return $this->render('DDShopBundle:Replacepass:message.html.twig');
     }
+    //////
 
     public function newAction(Request $request, $id, $passkey){
 

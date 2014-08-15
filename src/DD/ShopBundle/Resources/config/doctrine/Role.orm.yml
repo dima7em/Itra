@@ -20,5 +20,4 @@ DD\ShopBundle\Entity\Role:
         description:
             type: string
             length: 255
-
     lifecycleCallbacks: {  }

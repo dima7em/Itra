@@ -3,16 +3,16 @@
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets '@DDShopBundle/Resources/public/css/*.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
 {% block body%}
     {{ parent() }}
-    {% block head %}{% endblock %}
-    {% block content %}{% endblock %}
-    {% block tree %}{% endblock %}
-    <div class="container text-center form-horizontal">
+    <div class="container">
+        {% block head %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block tree %}{% endblock %}
         {% block form_echo %}
         {% endblock %}
     </div>
@@ -20,7 +20,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@DDShopBundle/Resources/public/js/*' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% javascripts '@DDShopBundle/Resources/public/js/*.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}

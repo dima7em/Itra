@@ -1,11 +1,7 @@
 <?php
-
 namespace DD\ShopBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\RoleInterface;
-
-
 /**
  * Role
  */
@@ -15,24 +11,18 @@ class Role implements RoleInterface
      * @var integer
      */
     private $id;
-
     /**
      * @var string
      */
     private $name;
-
     /**
      * @var string
      */
     private $description;
-
-
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function __toString(){
         return $this->name;
@@ -41,7 +31,6 @@ class Role implements RoleInterface
     {
         return $this->id;
     }
-
     /**
      * Set name
      * ekfjlkjsdf
@@ -52,21 +41,17 @@ class Role implements RoleInterface
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
-
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
     }
-
     /**
      * Set description
      *
@@ -76,14 +61,12 @@ class Role implements RoleInterface
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -93,7 +76,6 @@ class Role implements RoleInterface
      * @var \Doctrine\Common\Collections\Collection
      */
     private $users;
-
     /**
      * Constructor
      */
@@ -101,7 +83,6 @@ class Role implements RoleInterface
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Add users
      *
@@ -111,10 +92,8 @@ class Role implements RoleInterface
     public function addUser(\DD\ShopBundle\Entity\User $users)
     {
         $this->users[] = $users;
-
         return $this;
     }
-
     /**
      * Remove users
      *
@@ -124,11 +103,10 @@ class Role implements RoleInterface
     {
         $this->users->removeElement($users);
     }
-
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {
@@ -137,8 +115,8 @@ class Role implements RoleInterface
     /**
      * @var string
      */
-   public function getRole()
-   {
-       return $this->getName();
-   }
+    public function getRole()
+    {
+        return $this->getName();
+    }
 }

@@ -6,7 +6,7 @@
     {% endfor %}
 {% endfor %}#}
 {% block tree %}
-<link class="cssdeck" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css">
+
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" class="cssdeck">
 
 <div class="well" style="width:300px; padding: 8px 0;">
@@ -16,20 +16,24 @@
                 {{ menu|raw }}
             </li>
         </ul>
-
     </div>
+
+
 {% endblock %}
 
 
 {% block javascripts %}
     {{ parent() }}
-<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
+
     $(document).ready(function () {
         $('span').addClass('tree-toggler nav-header').click(function () {
             $(this).parent().children('ul').toggle(300);
         });
-    });
+
+
+     });
 </script>
 {% endblock %}

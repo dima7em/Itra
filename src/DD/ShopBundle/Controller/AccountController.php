@@ -26,7 +26,6 @@ class AccountController extends Controller
 
             if ($form->isValid()) {
                 $user->setPasskey('1');
-
                 $user->setFlag('0');
                 $user->setRole($role);
 

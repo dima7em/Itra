@@ -19,7 +19,5 @@ class RoleRepository extends EntityRepository
                   ->getQuery();
         return $role= $q->getSingleResult();
 
-
-
     }
 }

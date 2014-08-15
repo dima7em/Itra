@@ -9,5 +9,6 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return $this->render('DDShopBundle:Default:index.html.twig', array('name' => 'Igorka'));
+
     }
 }

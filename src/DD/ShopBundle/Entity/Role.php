@@ -3,11 +3,13 @@
 namespace DD\ShopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
+
 
 /**
  * Role
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @var integer
@@ -33,7 +35,7 @@ class Role
      * @return integer 
      */
     public function __toString(){
-        return $this->role;
+        return $this->name;
     }
     public function getId()
     {
@@ -135,29 +137,8 @@ class Role
     /**
      * @var string
      */
-    private $role;
-
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     * @return Role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string 
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
+   public function getRole()
+   {
+       return $this->getName();
+   }
 }

@@ -12,7 +12,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
         $menu->addChild('Home', array('route' => 'dd_shop_homepage'));
-        $menu->addChild('Catalog', array('route' => 'dd_shop_homepage'));
+        $menu->addChild('Catalog', array('route' => 'category_tree'));
         $menu->addChild('Account', array('route' => 'dd_shop_homepage'));
 
         return $menu;

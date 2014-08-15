@@ -1,0 +1,12 @@
+replacepass:
+    path:     /
+    defaults: { _controller: "DDShopBundle:Replacepass:replace" }
+change:
+    path:     /change/{username}/{email}
+    defaults: { _controller: DDShopBundle:Replacepass:change }
+message:
+    path:     /message
+    defaults: { _controller: DDShopBundle:Replacepass:message }
+new:
+    path:     /newpass/{id}/{passkey}
+    defaults: { _controller: DDShopBundle:Replacepass:new }

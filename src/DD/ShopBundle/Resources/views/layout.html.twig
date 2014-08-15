@@ -30,7 +30,11 @@
         </div>
     </div>
 {% endblock %}
-{% block content %}
+{% block error %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        {{ flashMessage }}
+    {% endfor %}
 {% endblock %}
+{% block content %}{% endblock %}
 
 

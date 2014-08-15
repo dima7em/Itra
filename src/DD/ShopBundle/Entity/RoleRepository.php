@@ -14,8 +14,8 @@ class RoleRepository extends EntityRepository
 {
     public function findOneByRole ($role){
         $q = $this->createQueryBuilder('r')
-                  ->where('r.role =:role')
-                  ->setParameter('role',$role)
+                  ->where('r.name =:name')
+                  ->setParameter('name',$role)
                   ->getQuery();
         return $role= $q->getSingleResult();
 

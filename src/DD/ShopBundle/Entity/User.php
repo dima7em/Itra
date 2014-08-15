@@ -2,8 +2,11 @@
 
 namespace DD\ShopBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
+
 
 /**
  * User
@@ -52,12 +55,9 @@ class User implements UserInterface, \Serializable
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function __construct()
-    {
 
-    }
 
     public function getId()
     {
@@ -80,7 +80,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -103,7 +103,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -126,7 +126,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -149,7 +149,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -172,7 +172,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get pass
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -195,7 +195,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get flag
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getFlag()
     {
@@ -210,10 +210,7 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
+
 
     /**
      * @inheritDoc
@@ -255,11 +252,21 @@ class User implements UserInterface, \Serializable
     /**
      * Get role
      *
-     * @return \DD\ShopBundle\Entity\Role 
+     * @return \DD\ShopBundle\Entity\Role
      */
     public function getRole()
     {
         return $this->role;
+    }
+
+    public function __construct()
+    {
+        $this->role = new ArrayCollection();
+    }
+    public function getRoles()
+    {
+
+        return array($this->getRole()->getName());
     }
 
     /**
@@ -274,6 +281,8 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->role,
+
             // see section on salt below
             // $this->salt,
         ));
@@ -295,6 +304,8 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->role,
+
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);
@@ -321,7 +332,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get passkey
      *
-     * @return string 
+     * @return string
      */
     public function getPasskey()
     {

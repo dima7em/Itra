@@ -124,7 +124,6 @@ class Role implements RoleInterface
     {
         $this->users->removeElement($users);
     }
-
     /**
      * Get users
      *

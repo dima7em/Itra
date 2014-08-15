@@ -23,11 +23,11 @@ class ReplacepassController extends Controller
                 $email = $form->getData();
                 $email = $email['email'];
                 return $this->redirect($this->generateUrl('change',
-                            array('username' => $username, 'email'=>$email)));
+                    array('username' => $username, 'email'=>$email)));
             }
         }
         return $this->render('DDShopBundle:Replacepass:replace.html.twig',
-                            array('form' => $form->createView()));
+            array('form' => $form->createView()));
     }
 
     private function createReplaceForm(){
@@ -50,7 +50,7 @@ class ReplacepassController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             $url = $this->container->get('router')->getContext()->getHost().
-                    $this->generateUrl('new', array('id'=>$id, 'passkey'=>$passkey));
+                $this->generateUrl('new', array('id'=>$id, 'passkey'=>$passkey));
 
             return $this->sendEmail($email, $url);
         }
@@ -98,7 +98,7 @@ class ReplacepassController extends Controller
                 }
             }
             return $this->render('DDShopBundle:Replacepass:new.html.twig',
-                                array('form' => $form->createView()));
+                array('form' => $form->createView()));
         }
         else {
             $this->get('session')->getFlashBag()->add('notice', 'Ваш ключ недействителен, попробуйте его обносить заполнив порму');

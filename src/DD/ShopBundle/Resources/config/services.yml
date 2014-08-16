@@ -1,7 +1,13 @@
 parameters:
 #    dd_shop.example.class: DD\ShopBundle\Example
-
+    newsletter_manager.class: DD\ShopBundle\Menu\Builder
 services:
 #    dd_shop.example:
 #        class: %dd_shop.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    dd.shop.menu.voter.request:
+        class: DD\ShopBundle\Menu\RequestVoter
+        arguments:
+            - @service_container
+        tags:
+            - { name: knp_menu.voter }

@@ -1,9 +1,6 @@
 <?php
 namespace DD\ShopBundle\Controller;
 
-use DD\ShopBundle\Entity\Resource;
-use DD\ShopBundle\Entity\User;
-use JsonSchema\Constraints\Object;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Knp\Menu\MenuFactory;
@@ -31,17 +28,17 @@ class CategorytreeController extends Controller
         $menu = $factiry->createItem('root');
         $menu ->setChildrenAttribute('class', 'nav nav-list tree');
 
-        foreach($resource as $d)
+        foreach($resource as $resname)
         {
-           $a=$menu ->addChild($d->getName())->setAttribute('dropdown', true)->setAttribute('class', true);
-            foreach($d->getCategory() as $c)
+           $a=$menu ->addChild($resname->getName())->setAttribute('dropdown', true)->setAttribute('class', true);
+            foreach($resname->getCategory() as $category)
             {
-                $a->addChild($c->getName())->setAttribute('divider_append', true);
+                $a->addChild($category->getName())->setAttribute('divider_append', true);
             }
         }
         $renderer = new ListRenderer(new Matcher());
 
-        //echo $renderer->render($menu);
+      // return 'fuck';
         return $this->render('DDShopBundle:Categorytree:tree.html.twig', array('menu'=> $renderer->render($menu)));
 
     }

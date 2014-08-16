@@ -47,3 +47,6 @@ index:
 DDShopBundle_replasepass:
     resource: "@DDShopBundle/Resources/config/routing/replacepass.yml"
     prefix:   /replacepass
+catalog:
+    path: /catalog
+    defaults: { _controller: DDShopBundle:Catalog:index }

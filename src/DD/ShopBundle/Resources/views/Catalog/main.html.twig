@@ -1,0 +1,7 @@
+{% extends 'DDShopBundle::layout.html.twig' %}
+{% block content %}
+    {{ parent() }}
+    {% block tree %}
+        {{  render(controller("DDShopBundle:Categorytree:tree")) }}
+    {% endblock %}
+{% endblock %}

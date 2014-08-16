@@ -1,14 +1,3 @@
-{% extends 'DDShopBundle::layout.html.twig' %}
-{#{% for article in resource %}
-<ul>{{ article.getName() }}
-    {% for ar in article.getcategory() %}
-    <li> {{ ar }}</li></ul
-    {% endfor %}
-{% endfor %}#}
-{% block tree %}
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" class="cssdeck">
-
 <div class="well" style="width:300px; padding: 8px 0;">
 
         <ul class="nav nav-list">
@@ -16,24 +5,4 @@
                 {{ menu|raw }}
             </li>
         </ul>
-    </div>
-
-
-{% endblock %}
-
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script>
-
-    $(document).ready(function () {
-        $('span').addClass('tree-toggler nav-header').click(function () {
-            $(this).parent().children('ul').toggle(300);
-        });
-
-
-     });
-</script>
-{% endblock %}
+</div>

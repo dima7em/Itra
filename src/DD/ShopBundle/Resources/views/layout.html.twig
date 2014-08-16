@@ -1,51 +1,62 @@
 {% extends 'DDShopBundle::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" class="cssdeck">
+{% endblock %}
+
 {% block head %}
-
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-
-                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-
-                    <!-- Be sure to leave the brand out there if you want it shown -->
-                    <a class="brand" href="#">DDShopBundle</a>
-
-                    <!-- Everything you want hidden at 940px or less, place within here -->
-                    <div class="nav-collapse">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <!-- Be sure to leave the brand out there if you want it shown -->
+                <a class="brand" href="#">Project name</a>
+                <!-- Everything you want hidden at 940px or less, place within here -->
+                <div class="nav-collapse collapse">
+                    <div class="nav navbar-nav">
                         {{ knp_menu_render('DDShopBundle:Builder:mainMenu') }}
+
                     </div>
-                    <form class="navbar-search pull-left" action="">
-
-                        <input class="search-query span1" type="text" placeholder="Search"></input>
-                    </form>
-
-                        <ul class="dropdown-menu">
-                        {{ knp_menu_render('DDShopBundle:Builder:AdminMenu') }}
-</ul>
-                  {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
-                                 {{ knp_menu_render('DDShopBundle:Builder:AdminMenu') }}
-                        </li>
-                    </ul>
-    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <ul class="nav navbar-nav" id="navbar-right">
+                            {{ knp_menu_render('DDShopBundle:Builder:accountMenu') }}
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+                                {{ knp_menu_render('DDShopBundle:Builder:adminMenu') }}
+                            </li>
+                            <form class="navbar-search pull-right" action="">
+                                <input class="search-query span1" type="text" placeholder="Search"></input>
+                            </form>
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         </div>
-
-
+    </div>
 
 
 {% endblock %}
-{% block error %}
+ {% block error %}
     {% for flashMessage in app.session.flashbag.get('notice') %}
         {{ flashMessage }}
     {% endfor %}
 {% endblock %}
 {% block content %}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('span').addClass('tree-toggler nav-header').click(function () {
+                $(this).parent().children('ul').toggle(300);
+            });
+        });
+    </script>
+{% endblock %}

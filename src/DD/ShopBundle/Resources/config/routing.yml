@@ -50,3 +50,6 @@ DDShopBundle_replasepass:
 catalog:
     path: /catalog
     defaults: { _controller: DDShopBundle:Catalog:index }
+show:
+    path: /show
+    defaults: { _controller: DDShopBundle:Show:show }

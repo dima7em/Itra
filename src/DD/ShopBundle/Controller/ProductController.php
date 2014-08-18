@@ -8,11 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use DD\ShopBundle\Entity\Product;
 use DD\ShopBundle\Form\ProductType;
 
+use Cloudinary\Uploader;
+
 /**
  * Product controller.
  *
  */
-
 class ProductController extends Controller
 {
 
@@ -41,8 +42,19 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $cloudinary = new \Cloudinary();
+            $cloudinary::config(array(
+                "cloud_name"=>"localhost-all-web",
+                "api_key"=>"787221372966778",
+                "api_secret"=>"X3fO_ct2jQUBucxkBn7XyhQ85hM"
+            ));
+
+            $img = \Cloudinary\Uploader::upload($entity->getSrc());
+            $url=$img['url'];
+            $entity->setSrc($url);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('product_show', array('id' => $entity->getId())));

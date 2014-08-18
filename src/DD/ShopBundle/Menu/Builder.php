@@ -16,8 +16,7 @@ class Builder extends ContainerAware
         $menu->setChildrenAttribute('class', 'nav');
         $menu->addChild('Home', array('route' => 'dd_shop_homepage'));
 
-
-        if (!false===$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if (false===$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
             $menu->addChild('Catalog', array('route' => 'catalog'));
         }
 
@@ -28,11 +27,11 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'dropdown-menu');
-        $menu->addChild('Show User', array('route' => 'user'))->setAttribute('divider_append', true);
-        $menu->addChild('Show Role', array('route' => 'role'))->setAttribute('divider_append', true);
-        $menu->addChild('Show Resource', array('route' => 'resource'))->setAttribute('divider_append', true);
-        $menu->addChild('Show Category', array('route' => 'category'))->setAttribute('divider_append', true);
-        $menu->addChild('Show Product', array('route' => 'product'))->setAttribute('divider_append', true);
+        $menu->addChild('Show User', array('route' => 'user'));
+        $menu->addChild('Show Role', array('route' => 'role'));
+        $menu->addChild('Show Resource', array('route' => 'resource'));
+        $menu->addChild('Show Category', array('route' => 'category'));
+        $menu->addChild('Show Product', array('route' => 'product'));
 
         return $menu;
     }
@@ -41,10 +40,10 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
         if (!false===$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
-            $menu->addChild('Account', array('route' => 'dd_shop_homepage'));
+            $menu->addChild('Login', array('route' => 'login'));
         }
         else{
-            $menu->addChild('Login', array('route' => 'login'));
+            $menu->addChild('Account', array('route' => 'dd_shop_homepage'));
         }
 
         return $menu;

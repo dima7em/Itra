@@ -36,6 +36,8 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         $entity = new User();
+        $entity->setDate(new \DateTime());
+        $entity->setPasskey('1');
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -49,7 +51,7 @@ class UserController extends Controller
 
         return $this->render('DDShopBundle:User:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form'   => $form->createView()
         ));
     }
 

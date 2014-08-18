@@ -77,12 +77,6 @@ DD\ShopBundle\Entity\Product:
           description:
               - NotBlank:
                   message: "This value shoul not be blank."
-          date:
-              - DateTime:
-                  message: "This value is not a valid datetime."
-          lastdate:
-              - DateTime:
-                  message: "This value is not a valid date."
           category:
               - NotBlank:
                   message: "This value shoul not be blank."

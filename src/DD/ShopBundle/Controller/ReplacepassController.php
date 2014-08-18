@@ -46,7 +46,10 @@ class ReplacepassController extends Controller
         {
             $id = $user->getId();
             $passkey = sha1(uniqid($email, true));
+            $date = new \DateTime();
+            $date->modify('+1 hour');
             $user->setPasskey($passkey);
+            $user->setDate($date);
             $this->getDoctrine()->getManager()->flush();
 
             $url = $this->container->get('router')->getContext()->getHost().
@@ -83,8 +86,8 @@ class ReplacepassController extends Controller
     public function newAction(Request $request, $id, $passkey){
 
         $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
-
-        if($entity = $repository->findOneBy(array('id'=>$id, 'passkey'=>$passkey)))
+        $entity = $repository->findOneBy(array('id'=>$id, 'passkey'=>$passkey));
+        if($entity && $entity->getDate()>new \DateTime())
         {
             $form = $this->createNewForm();
             if($request->getMethod()=='POST'){
@@ -101,7 +104,8 @@ class ReplacepassController extends Controller
                 array('form' => $form->createView()));
         }
         else {
-            $this->get('session')->getFlashBag()->add('notice', 'Ваш ключ недействителен, попробуйте его обносить заполнив порму');
+            $this->get('session')->getFlashBag()
+                ->add('notice', 'Most likely your link is invalid! Try times1');
             $form=$this->createReplaceForm();
             return $this->render('DDShopBundle:Replacepass:replace.html.twig',
                 array('form' => $form->createView()));

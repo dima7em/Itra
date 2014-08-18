@@ -33,7 +33,8 @@ class CategorytreeController extends Controller
            $a=$menu ->addChild($resname->getName())->setAttribute('dropdown', true)->setAttribute('class', true);
             foreach($resname->getCategory() as $category)
             {
-                $a->addChild($category->getName())->setAttribute('divider_append', true);
+                $url=$this->container->get('router')->getContext()->getHost().$this->generateUrl('catalog', array('name'=>$category->getName()));
+                $a->addChild($category->getName(),array('uri' => $url))->setAttribute('divider_append', true);
             }
         }
         $renderer = new ListRenderer(new Matcher());

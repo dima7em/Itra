@@ -4,4 +4,46 @@
     {% block tree %}
         {{  render(controller("DDShopBundle:Categorytree:tree")) }}
     {% endblock %}
+    {% if products %}
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Description</th>
+                <th>Src</th>
+                <th>Date</th>
+                <th>Lastdate</th>
+
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{% if product.src %}<img src="{{ product.src }}"/>{% endif %}</td>
+                    <td>{% if product.date %}{{ product.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if product.lastdate %}{{ product.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        NOOOOO
+    {% endif %}
 {% endblock %}

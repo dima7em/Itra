@@ -14,7 +14,8 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
-        $menu->addChild('Home', array('route' => 'dd_shop_homepage'));
+        $menu->addChild('Home', array('route' => 'index'));
+        $menu->addChild('Catalog', array('route' => 'catalog'));
 
         if (false===$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
             $menu->addChild('Catalog', array('route' => 'catalog'));

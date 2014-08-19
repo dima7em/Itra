@@ -8,8 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ShowController extends Controller
 {
-    public function ShowAction($id)
+    public function ShowAction()
     {
+        $request = $this->get('request');
+        $id = $request->query->get('id');
         $category = $this->getDoctrine()
             ->getRepository('DDShopBundle:Category')
             ->find($id);
@@ -19,9 +21,16 @@ class ShowController extends Controller
                 'No category found for id '.$id
             );
         }else{
+
             $products = $category->getProducts();
+            if (!$products) {
+                return $this->render('DDShopBundle:Catalog:show.html.twig', array('products'=>'No Products in this Category'));
+            }
+
+            return $this->render('DDShopBundle:Catalog:show.html.twig', array('products'=>$products));
+
         }
-        return $this->render('DDShopBundle:Catalog:show.html.twig', array('products'=>$products));
+
     }
 
 

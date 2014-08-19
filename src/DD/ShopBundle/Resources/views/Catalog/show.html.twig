@@ -1,5 +1,7 @@
 {% extends 'DDShopBundle::layout.html.twig' %}
 {% block content %}
 
-    {{ products }}
+    {% for product in products %}
+        {{ product.getName() }}
+    {% endfor %}
 {% endblock %}

@@ -2,6 +2,8 @@
 
 namespace DD\ShopBundle\Controller;
 
+use Doctrine\Common\Cache\FileCache;
+use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -9,6 +11,7 @@ use DD\ShopBundle\Entity\Product;
 use DD\ShopBundle\Form\ProductType;
 
 use Cloudinary\Uploader;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Product controller.
@@ -42,16 +45,13 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $cloudinary = new \Cloudinary();
-            $cloudinary::config(array(
-                "cloud_name"=>"localhost-all-web",
-                "api_key"=>"787221372966778",
-                "api_secret"=>"X3fO_ct2jQUBucxkBn7XyhQ85hM"
-            ));
+            if($entity->getSrc()){
+                $img =$this->cloudinary($entity->getSrc());
+                $url=$img['url'];
+                $entity->setSrc($url);
+            }
+            else  $entity->setSrc('null');
 
-            $img = \Cloudinary\Uploader::upload($entity->getSrc());
-            $url=$img['url'];
-            $entity->setSrc($url);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
 
@@ -79,7 +79,7 @@ class ProductController extends Controller
             'action' => $this->generateUrl('product_create'),
             'method' => 'POST',
         ));
-
+        $form->add('src', 'file');
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
@@ -135,14 +135,17 @@ class ProductController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
-
+        //var_dump($entity);
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+
+        //form
 
         return $this->render('DDShopBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'src'         => $entity->getSrc(),
         ));
     }
 
@@ -159,7 +162,8 @@ class ProductController extends Controller
             'action' => $this->generateUrl('product_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
+       // $entity->setSrc(null);
+        $form->add('src','file', array('data'=>null));
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
@@ -174,6 +178,8 @@ class ProductController extends Controller
 
         $entity = $em->getRepository('DDShopBundle:Product')->find($id);
 
+        $default_src = $entity->getSrc();
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
@@ -183,6 +189,16 @@ class ProductController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            if($src = $editForm->getData()->getSrc()){
+                //echo 'fuck';
+                $img = $this->cloudinary($src);
+                $entity->setSrc($img['url']);
+            }
+            else {
+                //echo('bugaga');
+                //var_dump($default_src);
+                $entity->setSrc($default_src);
+            }
             $em->flush();
 
             return $this->redirect($this->generateUrl('product_edit', array('id' => $id)));
@@ -233,5 +249,25 @@ class ProductController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    private function createDeleteSrc($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('src_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+            ;
+    }
+    private function cloudinary($src){
+        $cloudinary = new \Cloudinary();
+        $cloudinary::config(array(
+            "cloud_name"=>"localhost-all-web",
+            "api_key"=>"787221372966778",
+            "api_secret"=>"X3fO_ct2jQUBucxkBn7XyhQ85hM"
+        ));
+
+        $img = \Cloudinary\Uploader::upload($src);
+        return $img;
     }
 }

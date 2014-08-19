@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             {% for product in products %}
-                <tr>
+                <tr onClick="document.location='{{ path('product_show', { 'id': product.id }) }}'">
                     <td>{% if product.src %}<img class="img-rounded" style="height: 100px;width: 100px" src="{{ product.src }}"/>{% endif %}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.description }}</td>
@@ -33,9 +33,7 @@
 
                     <td>
                         <ul>
-                            <li>
-                                <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                            </li>
+
                             <li>
                                 <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
                             </li>

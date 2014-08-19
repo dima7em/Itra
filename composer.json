@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-menu-bundle": "2.0.x-dev",
         "knplabs/knp-paginator-bundle": "2.4.0",
-        "knplabs/knp-menu": "~2.0"
+        "knplabs/knp-menu": "~2.0",
+        "cloudinary/cloudinary_php": "1.0.11"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

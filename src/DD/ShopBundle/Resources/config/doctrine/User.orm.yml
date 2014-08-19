@@ -34,6 +34,8 @@ DD\ShopBundle\Entity\User:
         passkey:
             type: string
             length: 255
+        date:
+            type: datetime
         flag:
             type: boolean
     lifecycleCallbacks: {  }

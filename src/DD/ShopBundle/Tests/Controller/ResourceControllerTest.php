@@ -7,7 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class ResourceControllerTest extends WebTestCase
 {
     /*
+<<<<<<< HEAD
      *
+=======
+>>>>>>> origin/master
     public function testCompleteScenario()
     {
         // Create a new client to browse the application

@@ -15,11 +15,12 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
         $menu->addChild('Home', array('route' => 'index'));
-        $menu->addChild('Catalog', array('route' => 'catalog'));
+        //$menu->addChild('Catalog', array('route' => 'catalog'));
 
-        if (false===$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $menu->addChild('Catalog', array('route' => 'catalog'));
         }
+
 
         return $menu;
 
@@ -40,7 +41,7 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
-        if (!false===$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
             $menu->addChild('Login', array('route' => 'login'));
         }
         else{

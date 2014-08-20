@@ -200,22 +200,7 @@ class ProductController extends Controller
 
         if ($editForm->isValid()) {
             if($src = $editForm->getData()->getSrc()){
-                $file_type = $request->files->get('dd_shopbundle_product')['src']->getClientMimeType();
-                if(preg_match('/jpeg|jpg|png|gif|tiff|ico/', $file_type))
-                {
-                    $img = $this->cloudinary($src);
-                    $entity->setSrc($img['url']);
-                }
-                else
-                {
-                    $this->get('session')->getFlashBag()
-                            ->add('notice',
-                            'You are trying to upload an image data format Malfunction!
-                            Try povtarit with a file of any of the proposed type:
-                            jpeg, jpg, png, gif, tiff or ico.'
-                        );
-                    return $this->redirect($this->generateUrl('product_edit', array('id' => $id)));
-                }
+                $this->saveSrc($request, $entity, $editForm->getData()->getSrc());
             }
             else {
                 $entity->setSrc($default_src);
@@ -269,28 +254,25 @@ class ProductController extends Controller
             ->getForm()
         ;
     }
+
     private function createDeleteSrc($id)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('delete_src', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete img'))
-            ->getForm()
-
-            ;
+            ->getForm();
     }
+
     public function deleteSrcAction($id){
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('DDShopBundle:Product')->find($id);
-        preg_match('/[^\/]+$/',$entity->getSrc(), $matches);
-        preg_match('/^.+(?=\.)/', $matches[0], $match);
         if($src = $this->findSrc($entity->getSrc()))
         {
             if(\Cloudinary\Uploader::destroy($src))
             {
                 $entity->setSrc('null');
                 $em->flush();
-                //var_dump($entity->getSrc());
             }
             else
             {
@@ -304,10 +286,12 @@ class ProductController extends Controller
         return $this->editAction($id);
 
     }
+
     private function cloudinary($src){
         $img = \Cloudinary\Uploader::upload($src);
         return $img;
     }
+
     private function findSrc($src){
         if(preg_match('/(?<=upload\/).+/',$src, $matches)&&
             preg_match('/[^\/]+$/',$matches[0], $matche)&&
@@ -315,6 +299,24 @@ class ProductController extends Controller
         {
             ($src = $match[0]);
             return $src;
+        }
+    }
+    private function saveSrc(Request $request,Product $entity,$src){
+        $file_type = $request->files->get('dd_shopbundle_product')['src']->getClientMimeType();
+        if(preg_match('/jpeg|jpg|png|gif|tiff|ico/', $file_type))
+        {
+            $img = $this->cloudinary($src);
+            $entity->setSrc($img['url']);
+        }
+        else
+        {
+            $this->get('session')->getFlashBag()
+                ->add('notice',
+                    'You are trying to upload an image data format Malfunction!
+                    Try povtarit with a file of any of the proposed type:
+                    jpeg, jpg, png, gif, tiff or ico.'
+                );
+            return $this->redirect($this->generateUrl('product_edit', array('id' => $id)));
         }
     }
 }

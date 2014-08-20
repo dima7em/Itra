@@ -302,7 +302,8 @@ class ProductController extends Controller
         }
     }
     private function saveSrc(Request $request,Product $entity,$src){
-        $file_type = $request->files->get('dd_shopbundle_product')['src']->getClientMimeType();
+        $file_type = $request->files->get('dd_shopbundle_product');
+        $file_type['src']->getClientMimeType();
         if(preg_match('/jpeg|jpg|png|gif|tiff|ico/', $file_type))
         {
             $img = $this->cloudinary($src);

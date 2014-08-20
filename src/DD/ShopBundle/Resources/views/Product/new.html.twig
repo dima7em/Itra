@@ -3,8 +3,8 @@
 {% block content -%}
     <h1>Product creation</h1>
 
-    {{ form(form) }}
-
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {#, {'attr': {'novalidate': 'novalidate'}}#}
         <ul class="record_actions">
     <li>
         <a href="{{ path('product') }}">

@@ -139,13 +139,24 @@ class ProductController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        //form
 
+
+        if(preg_match('/(?<=upload\/).+/',$entity->getSrc(), $matches)!=false)
+        {
+            $deleteSrc = $this->createDeleteSrc($id)->createView();
+        }
+        else
+        {
+            $deleteSrc = null;
+        }
+                //form
+       // var_dump($entity->getSrc());createView()
         return $this->render('DDShopBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'src'         => $entity->getSrc(),
+            'delete_src'=>$deleteSrc
         ));
     }
 
@@ -201,7 +212,7 @@ class ProductController extends Controller
             }
             $em->flush();
 
-            return $this->redirect($this->generateUrl('product_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('product_show', array('id' => $id)));
         }
 
         return $this->render('DDShopBundle:Product:edit.html.twig', array(
@@ -253,21 +264,49 @@ class ProductController extends Controller
     private function createDeleteSrc($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('src_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('delete_src', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete img'))
             ->getForm()
+
             ;
     }
-    private function cloudinary($src){
-        $cloudinary = new \Cloudinary();
-        $cloudinary::config(array(
-            "cloud_name"=>"localhost-all-web",
-            "api_key"=>"787221372966778",
-            "api_secret"=>"X3fO_ct2jQUBucxkBn7XyhQ85hM"
-        ));
+    public function deleteSrcAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('DDShopBundle:Product')->find($id);
+        preg_match('/[^\/]+$/',$entity->getSrc(), $matches);
+        preg_match('/^.+(?=\.)/', $matches[0], $match);
+        if($src = $this->findSrc($entity->getSrc()))
+        {
+            if(\Cloudinary\Uploader::destroy($src))
+            {
+                $entity->setSrc('null');
+                $em->flush();
+                //var_dump($entity->getSrc());
+            }
+            else
+            {
+                $this->get('session')->getFlashBag()->add('notice', 'fuck you1');
+            }
+        }
+        else
+            {
+                $this->get('session')->getFlashBag()->add('notice', 'fuck you2');
+            }
+        return $this->editAction($id);
 
+    }
+    private function cloudinary($src){
         $img = \Cloudinary\Uploader::upload($src);
         return $img;
+    }
+    private function findSrc($src){
+        if(preg_match('/(?<=upload\/).+/',$src, $matches)&&
+            preg_match('/[^\/]+$/',$matches[0], $matche)&&
+                preg_match('/^.+(?=\.)/', $matche[0], $match))
+        {
+            ($src = $match[0]);
+            return $src;
+        }
     }
 }

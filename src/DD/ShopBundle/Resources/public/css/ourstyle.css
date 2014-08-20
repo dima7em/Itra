@@ -1,3 +1,6 @@
 #navbar-right{
     float: right;
 }
+td img, div img {
+    max-width: 200px;
+}

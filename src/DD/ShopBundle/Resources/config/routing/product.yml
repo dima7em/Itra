@@ -28,3 +28,6 @@ product_delete:
     path:     /{id}/delete
     defaults: { _controller: "DDShopBundle:Product:delete" }
     requirements: { _method: post|delete }
+delete_src:
+    path: /delete_src/{id}
+    defaults: { _controller: "DDShopBundle:Product:deleteSrc" }

@@ -3,7 +3,7 @@
 {% block content -%}
     <h1>Product</h1>
 
-    <table class="record_properties">
+    <table class="table table-striped table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -19,7 +19,13 @@
             </tr>
             <tr>
                 <th>Src</th>
-                <td>{{ entity.src }}</td>
+                <td>
+                    {% if entity.src == true %}
+                        <img src="{{ entity.src }}"/>
+                    {% else %}
+                        {{ entity.src }}
+                    {% endif  %}
+                </td>
             </tr>
             <tr>
                 <th>Date</th>

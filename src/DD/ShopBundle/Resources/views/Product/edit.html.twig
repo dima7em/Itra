@@ -2,15 +2,30 @@
 
 {% block content -%}
     <h1>Product edit</h1>
-
-    {{ form(edit_form) }}
-
+    {{ form(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
+   {#{{ form(edit_form.src, {'attr': {'novalidate': 'novalidate'}})  }}
+    {{ form(edit_form.name) }}
+    {{ form(edit_form.description) }}
+    <div>
+        <div>
+            <img src="{{ src }}"/>
+        </div>
+        <div>{{ form(edit_form.src) }}</div>
+    </div>
+    {{ form_rest(edit_form) }} #}
         <ul class="record_actions">
     <li>
         <a href="{{ path('product') }}">
             Back to the list
         </a>
     </li>
+
+    {% if delete_src != null %}
+        <li>
+            <div><img src="{{ src }}"/></div>
+            {{ form(delete_src) }}
+        </li>
+    {% endif %}
     <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

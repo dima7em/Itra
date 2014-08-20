@@ -17,7 +17,7 @@ class ProductType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('src', 'file')
+            ->add('src')
             ->add('date')
             ->add('lastdate')
             ->add('flag')

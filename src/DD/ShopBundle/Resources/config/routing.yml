@@ -53,3 +53,6 @@ catalog:
 show:
     path: /show
     defaults: { _controller: DDShopBundle:Show:show }
+img:
+    path: /img
+    defaults: { _controller: DDShopBundle:Img:img }

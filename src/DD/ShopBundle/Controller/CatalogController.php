@@ -35,7 +35,13 @@ class CatalogController extends Controller
             if (!$products) {
                 return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>''));
             }
+            /*sort products */
+            if($sort){
+                $index = array();
+                foreach($products as $a) $index[] = $a->$products->getName();
+                array_multisort($index, $products, $direction);
 
+            }
             /*make pagination for products*/
 
             $paginator  = $this->get('knp_paginator');
@@ -46,13 +52,7 @@ class CatalogController extends Controller
             );
 
 
-            /*sort products */
-            if($sort){
-                $index = array();
-                foreach($pagination as $a) $index[] = $a->$sort;
-                array_multisort($index, $pagination, $direction);
 
-            }
 
 
             return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>$pagination));

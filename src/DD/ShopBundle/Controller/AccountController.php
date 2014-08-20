@@ -28,6 +28,7 @@ class AccountController extends Controller
                 $user->setPasskey('1');
                 $user->setFlag('0');
                 $user->setRole($role);
+                $user->setDate(new \DateTime());
 
 
                 $em = $this->getDoctrine()->getManager();

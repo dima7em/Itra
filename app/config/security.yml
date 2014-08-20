@@ -38,5 +38,5 @@ security:
         - { path: /product, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
 
-        - { path: /index, roles:IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: /index, roles:ROLE_USER}
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

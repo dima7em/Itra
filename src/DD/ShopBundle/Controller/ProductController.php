@@ -5,13 +5,14 @@ namespace DD\ShopBundle\Controller;
 use Doctrine\Common\Cache\FileCache;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use DD\ShopBundle\Entity\Product;
 use DD\ShopBundle\Form\ProductType;
 
-use Cloudinary\Uploader;
-use Symfony\Component\Validator\Constraints\File;
+
+
 
 /**
  * Product controller.
@@ -186,9 +187,7 @@ class ProductController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('DDShopBundle:Product')->find($id);
-
         $default_src = $entity->getSrc();
 
         if (!$entity) {
@@ -201,20 +200,29 @@ class ProductController extends Controller
 
         if ($editForm->isValid()) {
             if($src = $editForm->getData()->getSrc()){
-                //echo 'fuck';
-                $img = $this->cloudinary($src);
-                $entity->setSrc($img['url']);
+                $file_type = $request->files->get('dd_shopbundle_product')['src']->getClientMimeType();
+                if(preg_match('/jpeg|jpg|png|gif|tiff|ico/', $file_type))
+                {
+                    $img = $this->cloudinary($src);
+                    $entity->setSrc($img['url']);
+                }
+                else
+                {
+                    $this->get('session')->getFlashBag()
+                            ->add('notice',
+                            'You are trying to upload an image data format Malfunction!
+                            Try povtarit with a file of any of the proposed type:
+                            jpeg, jpg, png, gif, tiff or ico.'
+                        );
+                    return $this->redirect($this->generateUrl('product_edit', array('id' => $id)));
+                }
             }
             else {
-                //echo('bugaga');
-                //var_dump($default_src);
                 $entity->setSrc($default_src);
             }
             $em->flush();
-
             return $this->redirect($this->generateUrl('product_show', array('id' => $id)));
         }
-
         return $this->render('DDShopBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),

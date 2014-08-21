@@ -40,14 +40,22 @@ class UserController extends Controller
         $entity->setPasskey('1');
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
+            if($repository->findUser($entity)){
+                $em->persist($entity);
+                $em->flush();
+                return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
+            }
+            else
+            {
+                $this->get('session')->getFlashBag()
+                    ->add('notice', 'The user with an email already exists.');
+                return $this->redirect($this->generateUrl('user_new'));
+            }
         }
+
 
         return $this->render('DDShopBundle:User:new.html.twig', array(
             'entity' => $entity,
@@ -172,8 +180,16 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
-
+            $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
+            if($repository->findUser($entity))
+            {
+                $em->flush();
+            }
+            else
+            {
+                $this->get('session')->getFlashBag()
+                    ->add('notice', 'The user with an email already exists.');
+            }
             return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 

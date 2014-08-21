@@ -63,4 +63,15 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $this->getEntityName() === $class
         || is_subclass_of($class, $this->getEntityName());
     }
+    public function findUser(User $entity){
+        $email = $entity->getEmail();
+
+        if($this->findBy(array('email'=>$email))==null){
+            return  true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

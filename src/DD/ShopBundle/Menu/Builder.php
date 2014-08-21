@@ -5,7 +5,6 @@ namespace DD\ShopBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
-use DD\ShopBundle\Menu\RequestVoter;
 
 
 class Builder extends ContainerAware
@@ -44,13 +43,25 @@ class Builder extends ContainerAware
         $menu->setChildrenAttribute('class', 'nav');
         if (!$this->container->get('security.context')->isGranted('ROLE_USER')) {
             $menu->addChild('Login', array('route' => 'login'));
+            /*$menu->addChild('About Me', array(
+                'route' => 'page_show',
+                'routeParameters' => array('id' => 42)
+            ));*/
         }
         else{
             $user = $this->container->get('security.context')->getToken()->getUser();
             $menu->addChild($user->getUsername(), array('route' => 'index'));
 
         }
+        return $menu;
+    }
 
+    public function locale(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav');
+        $locale = $this->container->get('request')->getLocale();
+        $menu->addChild($locale, array('route' => 'locale'));
         return $menu;
     }
 

@@ -41,7 +41,7 @@ class ReplacepassController extends Controller
         return $form;
     }
 
-    public function changeUserAction($username, $email){
+    public function changeUserAction(Request $request, $username, $email){
         $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
         if($user = $repository->findOneBy(array('username'=>$username, 'email'=>$email)))
         {
@@ -53,8 +53,8 @@ class ReplacepassController extends Controller
             $user->setDate($date);
             $this->getDoctrine()->getManager()->flush();
 
-            $url = $this->container->get('router')->getContext()->getHost().
-                $this->generateUrl('new', array('id'=>$id, 'passkey'=>$passkey));
+            $url = $request->getHost().$this->generateUrl('new',
+                           array('id'=>$id, 'passkey'=>$passkey));
 
             return $this->sendEmail($email, $url);
         }
@@ -120,8 +120,10 @@ class ReplacepassController extends Controller
                 array('form' => $form->createView()));
         }
         else {
+            $url = $request->getHttpHost().$this->generateUrl('replacepass');
             $this->get('session')->getFlashBag()
-                ->add('notice', 'Most likely your link imessages invalid! Try times!');
+                ->add('notice', "Most likely your link invalid!
+                                 <a href=http://". $url.">Try to generate a new page:</a>");
             //$form=$this->createReplacePassForm();
             return $this->render('DDShopBundle:Replacepass:error.html.twig');
         }

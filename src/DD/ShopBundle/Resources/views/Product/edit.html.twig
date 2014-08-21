@@ -2,7 +2,12 @@
 
 {% block content -%}
     <h1>Product edit</h1>
+    {% if delete_src != null %}
+        <div><img src="{{ src }}"/></div>
+        {{ form(delete_src) }}
+    {% endif %}
     {{ form(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
+
    {#{{ form(edit_form.src, {'attr': {'novalidate': 'novalidate'}})  }}
     {{ form(edit_form.name) }}
     {{ form(edit_form.description) }}
@@ -20,12 +25,6 @@
         </a>
     </li>
 
-    {% if delete_src != null %}
-        <li>
-            <div><img src="{{ src }}"/></div>
-            {{ form(delete_src) }}
-        </li>
-    {% endif %}
     <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

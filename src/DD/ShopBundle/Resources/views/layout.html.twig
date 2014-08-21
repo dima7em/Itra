@@ -43,9 +43,13 @@
 
 {% endblock %}
  {% block error %}
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        {{ flashMessage }}
-    {% endfor %}
+
+         <div class="text-error alert-error error">
+             {% for flashMessage in app.session.flashbag.get('notice') %}
+                <li class="error-message"> {{ flashMessage }}</li>
+             {% endfor %}
+         </div>
+
 {% endblock %}
 {% block content %}{% endblock %}
 

@@ -4,3 +4,23 @@
 td img, div img {
     max-width: 200px;
 }
+.navbar .brand{
+    color: #08C;
+}
+.message{
+    padding: 15px;
+    background-color: #d0e9c6;
+}
+.error{
+    margin-top: -22px;
+    margin-bottom: 30px;
+    border-radius: 0 0 5px 5px;
+    text-align: center;
+
+}
+.error-message{
+    padding: 10px;
+}
+.btn-login{
+    clear: right;
+}

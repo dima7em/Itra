@@ -3,9 +3,11 @@ namespace DD\ShopBundle\Controller;
 
 use DD\ShopBundle\Entity\User;
 use JsonSchema\Constraints\Object;
+use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Form\Extension\Validator\Constraints\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Constraints\Null;
 
 class ReplacepassController extends Controller
@@ -13,7 +15,7 @@ class ReplacepassController extends Controller
 
     public function replaceAction(Request $request)
     {
-        $form=$this->createReplaceForm();
+        $form=$this->createReplacePassForm();
         if($request->getMethod()=='POST'){
             $form->bind($request);
 
@@ -22,15 +24,15 @@ class ReplacepassController extends Controller
                 $username = $username['username'];
                 $email = $form->getData();
                 $email = $email['email'];
-                return $this->redirect($this->generateUrl('change',
-                    array('username' => $username, 'email'=>$email)));
+                return $this->forward('DDShopBundle:Replacepass:changeUser',
+                    array('username' => $username, 'email'=>$email));
             }
         }
         return $this->render('DDShopBundle:Replacepass:replace.html.twig',
             array('form' => $form->createView()));
     }
 
-    private function createReplaceForm(){
+    private function createReplacePassForm(){
         $password = array('message'=>'Type your message here');
         $form = $this->createFormBuilder($password)
             ->add('username', 'text')
@@ -40,7 +42,7 @@ class ReplacepassController extends Controller
         return $form;
     }
 
-    public function changeAction($username, $email){
+    public function changeUserAction($username, $email){
         $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
         if($user = $repository->findOneBy(array('username'=>$username, 'email'=>$email)))
         {
@@ -58,8 +60,9 @@ class ReplacepassController extends Controller
             return $this->sendEmail($email, $url);
         }
         else {
-            $this->get('session')->getFlashBag()->add('notice', 'Password was as');
-            $form=$this->createReplaceForm();
+            $this->get('session')->getFlashBag()
+                ->add('notice', 'We can not find a user with an email, check your input.');
+            $form=$this->createReplacePassForm();
             return $this->render('DDShopBundle:Replacepass:replace.html.twig',
                 array('form' => $form->createView()));
         }
@@ -72,16 +75,24 @@ class ReplacepassController extends Controller
             ->setSubject('DDShopBundle. Change Pass')
             ->setFrom('semynovich.dmitriy@gmail.com')
             ->setTo($email)
-            ->setBody($this->renderView('DDShopBundle:Replacepass:email.txt.twig', array('url'=>$url)), 'text/html');
+            ->setBody($this->renderView('DDShopBundle:Replacepass:email.txt.twig',
+                                        array('url'=>$url)), 'text/html');
 
         $this->get('mailer')->send($message);
+        $this->get('session')->getFlashBag()
+            ->add('notice', 'On your e-mail was sent a link by clicking on which you
+                             will be able to complete the password change');
         return $this->redirect($this->generateUrl('message'));
     }
 
     public function messageAction(){
         return $this->render('DDShopBundle:Replacepass:message.html.twig');
     }
-    //////
+
+    public function errorAction(){
+        return $this->render('DDShopBundle:Replacepass:error.html.twig');
+    }
+
 
     public function newAction(Request $request, $id, $passkey){
 
@@ -96,8 +107,14 @@ class ReplacepassController extends Controller
                 {
                     $password = $form->getData();
                     $password = $password['Password'];
+                    $passkey = sha1(uniqid($password, true));
                     $entity->setPassword($password);
+                    $entity->setPasskey($passkey);
                     $this->getDoctrine()->getManager()->flush();
+
+                    $this->get('session')->getFlashBag()
+                        ->add('notice', 'Your password has been changed');
+                    return $this->redirect($this->generateUrl('message'));
                 }
             }
             return $this->render('DDShopBundle:Replacepass:new.html.twig',
@@ -105,10 +122,9 @@ class ReplacepassController extends Controller
         }
         else {
             $this->get('session')->getFlashBag()
-                ->add('notice', 'Most likely your link is invalid! Try times1');
-            $form=$this->createReplaceForm();
-            return $this->render('DDShopBundle:Replacepass:replace.html.twig',
-                array('form' => $form->createView()));
+                ->add('notice', 'Most likely your link imessages invalid! Try times!');
+            //$form=$this->createReplacePassForm();
+            return $this->render('DDShopBundle:Replacepass:error.html.twig');
         }
     }
 

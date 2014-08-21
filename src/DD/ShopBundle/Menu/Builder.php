@@ -4,6 +4,7 @@ namespace DD\ShopBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Security\Core\SecurityContext;
 use DD\ShopBundle\Menu\RequestVoter;
 
 
@@ -41,11 +42,13 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
-        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+        if (!$this->container->get('security.context')->isGranted('ROLE_USER')) {
             $menu->addChild('Login', array('route' => 'login'));
         }
         else{
-            $menu->addChild('Account', array('route' => 'dd_shop_homepage'));
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $menu->addChild($user->getUsername(), array('route' => 'index'));
+
         }
 
         return $menu;

@@ -1,12 +1,13 @@
-{% extends 'DDShopBundle::base.html.twig' %}
+{% extends 'DDShopBundle::layout.html.twig' %}
 
 {% block content -%}
     {% if error %}
         <div>{{ error.message }}</div>
     {% endif %}
-<div class=" foter container text-center form-horizontal">
+<div class="text-center">
     <div class="form-goup">
     <form class="" action="{{ path('login_check') }}" method="post">
+
         <label for="username">Username:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
@@ -19,8 +20,8 @@
             <input type="hidden" name="_target_path" value="/account" />
         #}
         <input type="hidden" name="_target_path" value="/index" />
-
-        <button class="btn-primary btn btn-block" type="submit">login</button>
+        <p>
+        <button class="btn btn-login" type="submit">login</button>
     </form>
     </div>
 </div>

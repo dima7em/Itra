@@ -1,5 +1,9 @@
 {% extends 'DDShopBundle::layout.html.twig' %}
 
-{% block content %}
-    <div>On your e-mail was sent a link by clicking on which you will be able to complete the password change</div>
-{% endblock %}
+ {% block error %}
+     <div class="error">
+         {% for flashMessage in app.session.flashbag.get('notice') %}
+             <li class="message error">{{ flashMessage }}</li>
+         {% endfor %}
+     </div>
+ {% endblock %}

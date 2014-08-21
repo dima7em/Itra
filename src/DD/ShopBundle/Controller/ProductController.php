@@ -140,18 +140,8 @@ class ProductController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+        $deleteSrc = $this->valueDeleteSrc($entity);
 
-
-        if(preg_match('/(?<=upload\/).+/',$entity->getSrc(), $matches)!=false)
-        {
-            $deleteSrc = $this->createDeleteSrc($id)->createView();
-        }
-        else
-        {
-            $deleteSrc = null;
-        }
-                //form
-       // var_dump($entity->getSrc());createView()
         return $this->render('DDShopBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -208,10 +198,13 @@ class ProductController extends Controller
             $em->flush();
             return $this->redirect($this->generateUrl('product_show', array('id' => $id)));
         }
+        $deleteSrc = $this->valueDeleteSrc($entity);
+
         return $this->render('DDShopBundle:Product:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'delete_src' => $deleteSrc,
         ));
     }
     /**
@@ -276,14 +269,18 @@ class ProductController extends Controller
             }
             else
             {
-                $this->get('session')->getFlashBag()->add('notice', 'fuck you1');
+                $this->get('session')->getFlashBag()
+                    ->add('When you remove the error occurred regarding our storage!
+                    Try again later!');
             }
         }
         else
             {
-                $this->get('session')->getFlashBag()->add('notice', 'fuck you2');
+                $this->get('session')->getFlashBag()
+                    ->add('notice', 'We can not find the image.
+                    Maybe it has already been deleted!');
             }
-        return $this->editAction($id);
+        return $this->redirect($this->generateUrl('product_edit', array('id'=>$id)));//  editAction($id);
 
     }
 
@@ -303,8 +300,8 @@ class ProductController extends Controller
     }
     private function saveSrc(Request $request,Product $entity,$src){
         $file_type = $request->files->get('dd_shopbundle_product');
-        $file_type = $file_type['src']->getClientMimeType();
-        if(preg_match('/jpeg|jpg|png|gif|tiff|ico/', $file_type))
+        var_dump($file_type = $file_type['src']->getClientMimeType());
+        if(preg_match('/image\/.+[jpeg|jpg|png|gif|tiff|ico]/', $file_type))
         {
             $img = $this->cloudinary($src);
             $entity->setSrc($img['url']);
@@ -317,7 +314,17 @@ class ProductController extends Controller
                     Try povtarit with a file of any of the proposed type:
                     jpeg, jpg, png, gif, tiff or ico.'
                 );
-            return $this->redirect($this->generateUrl('product_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('product_edit', array('id' => $entity->getId())));
+        }
+    }
+    private function valueDeleteSrc(Product $entity){
+        if(preg_match('/(?<=upload\/).+/',$entity->getSrc(), $matches)!=false)
+        {
+            return $this->createDeleteSrc($entity->getId())->createView();
+        }
+        else
+        {
+            return null;
         }
     }
 }

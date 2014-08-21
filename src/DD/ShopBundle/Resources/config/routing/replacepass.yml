@@ -10,3 +10,6 @@ message:
 new:
     path:     /newpass/{id}/{passkey}
     defaults: { _controller: DDShopBundle:Replacepass:new }
+error:
+    path: /error
+    defaults: { _controller: DDShopBundle:Replacepass:error }

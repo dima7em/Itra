@@ -43,7 +43,10 @@ class Product
      * @var boolean
      */
     private $flag;
-
+    public function __toString()
+    {
+        return strval($this->name);
+    }
 
     /**
      * Get id

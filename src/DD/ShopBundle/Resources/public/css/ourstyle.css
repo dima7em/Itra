@@ -24,3 +24,6 @@ td img, div img {
 .btn-login{
     clear: right;
 }
+.nav-header{
+    display: -moz-box;
+}

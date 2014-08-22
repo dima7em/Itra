@@ -1,6 +1,7 @@
 <?php
 namespace DD\ShopBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 class CatalogController extends Controller
 {
     public function indexAction()
@@ -43,21 +44,36 @@ class CatalogController extends Controller
             return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>$pagination));
         }
     }
-    public function searchAction(){
+    public function searchAction(Request $request){
 
-        $id = '1';
-        $search = 'ENO';
-        $repository = $this->getDoctrine()
-            ->getRepository('DDShopBundle:Product');
+        $req= $request->server->get('HTTP_REFERER');
+        preg_match('/[^id=]+(?=&)/',$req, $matches);
 
-        $products = $repository->findBy(array('category'=>$id,'name'=>$search));
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $products,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            5/*limit per page*/
-        );
-        return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>$pagination));
+        if(!$matches){
+            preg_match('/[^id=]+$/',$req, $matches);
+
+        }
+        if($matches){
+
+            $id = $matches[0];
+            $search = $_POST['search'];
+            $repository = $this->getDoctrine()->getRepository('DDShopBundle:Product');
+            $products = $repository->findBy(array('category'=>$id,'name'=>$search));
+                if($products){
+                $paginator = $this->get('knp_paginator');
+                $pagination = $paginator->paginate(
+                    $products,
+                    $this->get('request')->query->get('page', 1)/*page number*/,
+                    5/*limit per page*/
+                );
+                return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
+            }
+            $pagination='1';
+            return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
+
+        }
+        $pagination='';
+        return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
 
     }
 }

@@ -43,4 +43,21 @@ class CatalogController extends Controller
             return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>$pagination));
         }
     }
+    public function searchAction(){
+
+        $id = '1';
+        $search = 'ENO';
+        $repository = $this->getDoctrine()
+            ->getRepository('DDShopBundle:Product');
+
+        $products = $repository->findBy(array('category'=>$id,'name'=>$search));
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $products,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+        return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>$pagination));
+
+    }
 }

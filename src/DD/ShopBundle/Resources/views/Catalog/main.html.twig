@@ -4,6 +4,9 @@
     {% block tree %}
         {{  render(controller("DDShopBundle:Categorytree:tree")) }}
     {% endblock %}
+    <form class="navbar-search pull-right" action="catalog/search">
+        Search By Name: <input class="search-query span1" type="text" placeholder="Search"></input>
+    </form>
     <div class="offset2" >
     {% if products %}
 

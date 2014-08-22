@@ -56,3 +56,7 @@ show:
 img:
     path: /img
     defaults: { _controller: DDShopBundle:Img:img }
+
+catalog_search:
+    path: /catalog/search
+    defaults: { _controller: DDShopBundle:Catalog:search }

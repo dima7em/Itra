@@ -21,6 +21,14 @@ class ProductRepository extends EntityRepository
 
     }
 
+    public function findallByName($id,$search){
+        $q = $this->createQueryBuilder('p')
+            ->addCriteria('p.category ='.$id )
+            ->where('p.name ='.$search)
+            ->getQuery();
+        return $sorted= $q->getResult();
+    }
+
 
 
 }

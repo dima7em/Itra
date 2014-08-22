@@ -29,9 +29,8 @@ class CatalogController extends Controller
             }
             /*sort products */
             if($sort){
-                $index = array();
-                foreach($products as $a) $index[] = $a->getName();
-                array_multisort($index, $products ,SORT_ASC);
+                $eml = $this->getDoctrine()->getRepository('DDShopBundle:Product');
+                $products = $eml->findAllOrderByParam($id,$sort,$direction);
 
             }
             /*make pagination for products*/

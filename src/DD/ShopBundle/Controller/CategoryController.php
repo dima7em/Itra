@@ -25,6 +25,13 @@ class CategoryController extends Controller
 
         $entities = $em->getRepository('DDShopBundle:Category')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('DDShopBundle:Category:index.html.twig', array(
             'entities' => $entities,
         ));

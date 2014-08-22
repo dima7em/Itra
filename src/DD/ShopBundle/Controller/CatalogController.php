@@ -30,8 +30,9 @@ class CatalogController extends Controller
             /*sort products */
             if($sort){
                 $index = array();
-                foreach($products as $a) $index[] = $a->$products->getName();
-                array_multisort($index, $products, $direction);
+                foreach($products as $a) $index[] = $a->getName();
+                array_multisort($index, $products ,SORT_ASC);
+
             }
             /*make pagination for products*/
             $paginator = $this->get('knp_paginator');

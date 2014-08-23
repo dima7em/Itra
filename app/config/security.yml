@@ -32,10 +32,11 @@ security:
             #    realm: "Secured Demo Area"
 
     access_control:
-        - { path: /user, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: /role, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: /category, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: /product, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: /user, roles: ROLE_ADMIN}
+        - { path: /role, roles: ROLE_ADMIN}
+        - { path: /category, roles: ROLE_MODERATOR}
+        - { path: /product, roles: ROLE_USER}
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: /index, roles:IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: /index, roles: ROLE_USER}
+        - { path: /catalog, roles: ROLE_USER}
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

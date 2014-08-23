@@ -27,8 +27,10 @@
 
                 <th>Date</th>
                 <th>Lastdate</th>
+                {% if  is_granted('ROLE_MODERATOR') %}
 
                 <th>Actions</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -39,6 +41,7 @@
                     <td>{{ product.description }}</td>
                     <td>{% if product.date %}{{ product.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if product.lastdate %}{{ product.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                {% if  is_granted('ROLE_MODERATOR') %}
 
                     <td>
                         <ul>
@@ -48,6 +51,7 @@
                             </li>
                         </ul>
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

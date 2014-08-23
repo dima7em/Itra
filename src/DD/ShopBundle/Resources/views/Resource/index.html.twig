@@ -3,6 +3,14 @@
 {% block content -%}
     <h1>Resource list</h1>
 
+    <ul>
+        <li>
+            <a href="{{ path('resource_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -36,11 +44,4 @@
         {{ knp_pagination_render(entities) }}
     </div>
 
-        <ul>
-        <li>
-            <a href="{{ path('resource_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
     {% endblock %}

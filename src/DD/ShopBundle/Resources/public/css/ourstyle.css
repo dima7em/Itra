@@ -57,6 +57,9 @@ span .tree-toggle.nav-header.tree-toggler{
     margin-bottom: -10px;
 }
 .forgot-pass{
-    margin-left: 20px;
+    margin-top: -15px;
+}
+.forgot-pass a{
+    margin: 5px;
     font-size: 0.9em;
 }

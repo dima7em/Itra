@@ -1,6 +1,8 @@
 <?php
 namespace DD\ShopBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
 class CatalogController extends Controller
 {
     public function indexAction()

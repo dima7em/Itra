@@ -18,6 +18,7 @@ class CategoryType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('flag')
+            ->add('level')
             ->add('resource')
         ;
     }

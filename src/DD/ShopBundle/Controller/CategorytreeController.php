@@ -19,28 +19,48 @@ class CategorytreeController extends Controller
         $menu['User']->addChild('FFF', array('uri'=>'#'));
 
 */
-
         $resource=$this->getDoctrine()
             ->getRepository('DDShopBundle:Resource')
             ->findAll();
-
         $factiry = new MenuFactory();
         $menu = $factiry->createItem('root');
         $menu ->setChildrenAttribute('class', 'nav nav-list tree');
 
         foreach($resource as $resname)
         {
-           $a=$menu ->addChild($resname->getName())->setAttribute('dropdown', true)->setAttribute('class', true);
-            foreach($resname->getCategory() as $category)
+            $res=$menu ->addChild($resname->getName())->setAttribute('dropdown', true)->setAttribute('class', true);
+            $categories = $this ->getDoctrine()
+                ->getRepository('DDShopBundle:Category')
+                ->getAscCategory($resname->getId());
+            foreach($categories as $category)
             {
                 $url="http://".$this->container->get('router')->getContext()->getHost().$this->generateUrl('catalog', array('id'=>$category->getId()));
-                $a->addChild($category->getName(),array('uri' => $url))->setAttribute('divider_append', true);
+                $res->addChild($category->getName(),array('uri' => $url))->setAttribute('divider_append', true);
             }
         }
         $renderer = new ListRenderer(new Matcher());
-
-      // return 'fuck';
-        return $this->render('DDShopBundle:Categorytree:tree.html.twig', array('menu'=> $renderer->render($menu)));
-
+        return $this->render('DDShopBundle:Categorytree:tree.html.twig',
+                                array('menu'=> $renderer->render($menu)));
+    }
+    public function adminTreeAction()
+    {
+        $resources=$this->getDoctrine()
+            ->getRepository('DDShopBundle:Resource')
+            ->findAll();
+        $tree=array();
+        foreach($resources as $resource)
+        {
+            $res_name = $resource->getName();
+            $tree[$res_name] = array();
+            $categories = $this ->getDoctrine()
+                ->getRepository('DDShopBundle:Category')
+                ->getAscCategory($resource->getId());
+            foreach($categories as $category)
+            {
+                $tree[$res_name][] = $category->getName();
+            }
+        }
+        return $this->render('DDShopBundle:Categorytree:admintree.html.twig',
+                               array('tree'=> $tree));
     }
 }

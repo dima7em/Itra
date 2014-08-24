@@ -1,6 +1,5 @@
 {% extends 'DDShopBundle::layout.html.twig' %}
 
-
 {% block content -%}
     <h1>Category</h1>
 
@@ -17,6 +16,10 @@
             <tr>
                 <th>Description</th>
                 <td>{{ entity.description }}</td>
+            </tr>
+            <tr>
+                <th>Level</th>
+                <td>{{ entity.level }}</td>
             </tr>
             <tr>
                 <th>Flag</th>

@@ -25,6 +25,9 @@ DD\ShopBundle\Entity\Category:
             length: 255
         description:
             type: text
+        level:
+            type: integer
+            length: 255
         flag:
             type: boolean
     lifecycleCallbacks: {  }

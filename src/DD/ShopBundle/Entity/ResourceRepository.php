@@ -12,11 +12,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class ResourceRepository extends EntityRepository
 {
-    public function findOneByResource ($resource){
-        $q = $this->createQueryBuilder('r')
-            ->where('r.resource =:resource')
-            ->setParameter('resource',$resource)
-            ->getQuery();
-        return $resource= $q->getSingleResult();
-    }
+
 }

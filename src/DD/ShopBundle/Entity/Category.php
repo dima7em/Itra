@@ -184,4 +184,32 @@ class Category
     {
         return $this->resource;
     }
+    /**
+     * @var integer
+     */
+    private $level;
+
+
+    /**
+     * Set level
+     *
+     * @param \integer $level
+     * @return Category
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return \integer
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
 }

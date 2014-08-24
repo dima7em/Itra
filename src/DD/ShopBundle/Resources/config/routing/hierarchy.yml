@@ -1,0 +1,21 @@
+index:
+    path:     /
+    defaults: { _controller: "DDShopBundle:Hierarchy:index" }
+next:
+    path:     /next/{resource}/{name}
+    defaults: { _controller: "DDShopBundle:Hierarchy:categoryNext" }
+menu:
+    path:     /menu/{name}
+    defaults: { _controller: "DDShopBundle:Hierarchy:menu" }
+menu_li:
+    path:     /li/{resource}
+    defaults: { _controller: "DDShopBundle:Hierarchy:hierarchy" }
+first:
+    path:     /first/{resource}/{name}
+    defaults: { _controller: "DDShopBundle:Hierarchy:categoryFirst" }
+prev:
+    path:     /prev/{resource}/{name}
+    defaults: { _controller: "DDShopBundle:Hierarchy:categoryPrev" }
+last:
+    path:     /last/{resource}/{name}
+    defaults: { _controller: "DDShopBundle:Hierarchy:categoryLast" }

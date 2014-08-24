@@ -1,0 +1,14 @@
+{% for li in ul %}
+        <div id="{{ li }}" class="dropdown">
+            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+                {{ li  }}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <button id="next" class="btn btn-link btn-mini" type="button">Next</button>
+                <button id="prev" class="btn btn-link btn-mini" type="button">Prev</button>
+                <button id="first" class="btn btn-link btn-mini" type="button">First</button>
+                <button id="last" class="btn btn-link btn-mini" type="button">Last</button>
+            </ul>
+        </div>
+{%  endfor %}

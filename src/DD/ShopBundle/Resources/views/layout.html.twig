@@ -24,7 +24,9 @@
                     </div>
 
                         <ul class="nav navbar-nav" id="navbar-right">
+                            <li class="dropdown">
                             {{ knp_menu_render('DDShopBundle:Builder:accountMenu') }}
+                            </li>
                             <li class="dropdown">
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
@@ -46,7 +48,7 @@
 
          <div class="text-error alert-error error">
              {% for flashMessage in app.session.flashbag.get('notice') %}
-                <li class="error-message"> {{ flashMessage }}</li>
+                <li class="error-message"> {{ flashMessage|raw }}</li>
              {% endfor %}
          </div>
 
@@ -58,11 +60,16 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
+
+    {% block myjs %}
         $(document).ready(function () {
+
+            $('.nav-header').css({'display': 'box'})
             $('span').parent().children('ul').hide();
             $('span').addClass('tree-toggler nav-header').click(function () {
                 $(this).parent().children('ul').toggle(300);
             });
         });
+    {% endblock %}
     </script>
 {% endblock %}

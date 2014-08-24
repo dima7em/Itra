@@ -38,9 +38,6 @@ user_logout:
 category_tree:
     path:     /tree
     defaults: { _controller: DDShopBundle:Categorytree:tree }
-admin_category_tree:
-    path:     /admintree
-    defaults: { _controller: DDShopBundle:Categorytree:AdminTree }
 DDShopBundle_resource:
     resource: "@DDShopBundle/Resources/config/routing/resource.yml"
     prefix:   /resource
@@ -56,9 +53,6 @@ catalog:
 show:
     path: /show
     defaults: { _controller: DDShopBundle:Show:show }
-locale:
-    path: /locale
-    defaults: { _controller: DDShopBundle:Locale:locale }
-hierarchy:
-    resource: "@DDShopBundle/Resources/config/routing/hierarchy.yml"
-    prefix:   /hierarchy
+img:
+    path: /img
+    defaults: { _controller: DDShopBundle:Img:img }

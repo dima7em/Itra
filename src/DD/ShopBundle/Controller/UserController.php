@@ -25,6 +25,13 @@ class UserController extends Controller
 
         $entities = $em->getRepository('DDShopBundle:User')->findAll();
 
+        $paginator = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $entities,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('DDShopBundle:User:index.html.twig', array(
             'entities' => $entities,
         ));

@@ -12,4 +12,23 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+    public function findAllOrderByParam ($id, $sort, $description){
+        $q = $this->createQueryBuilder('p')
+            ->where('p.category ='.$id)
+            ->orderBy($sort, $description)
+            ->getQuery();
+        return $sorted= $q->getResult();
+
+    }
+
+    public function findallByName($id,$search){
+        $q = $this->createQueryBuilder('p')
+            ->addCriteria('p.category ='.$id )
+            ->where('p.name ='.$search)
+            ->getQuery();
+        return $sorted= $q->getResult();
+    }
+
+
+
 }

@@ -4,14 +4,12 @@
     {% block tree %}
         {{  render(controller("DDShopBundle:Categorytree:tree")) }}
     {% endblock %}
-    <form method="post" class="navbar-search pull-right" action="catalog/search">
-        Search By Name: <input class="search-query span1" type="text" placeholder="Search" name="search"></input>
-    </form>
     <div class="offset2" >
-    {% if products %}
-
+    {% if products=='1' %}
+        <h2> No result or search </h2>
+    {% elseif products %}
         <div class="count">
-           This category have  {{ products.getTotalItemCount }} products :)
+            You have  {{ products.getTotalItemCount }} results :)
         </div>
 
         <table class="table table-striped table-hover">
@@ -27,10 +25,8 @@
 
                 <th>Date</th>
                 <th>Lastdate</th>
-                {% if  is_granted('ROLE_MODERATOR') %}
 
                 <th>Actions</th>
-                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -41,7 +37,6 @@
                     <td>{{ product.description }}</td>
                     <td>{% if product.date %}{{ product.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if product.lastdate %}{{ product.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                {% if  is_granted('ROLE_MODERATOR') %}
 
                     <td>
                         <ul>
@@ -51,7 +46,6 @@
                             </li>
                         </ul>
                     </td>
-                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
@@ -61,8 +55,10 @@
             {{ knp_pagination_render(products) }}
         </div>
 
+
     {% else %}
-        NOOOOO
+
+        <h2> This search is non global. Only for search into selected category  </h2>
     {% endif %}
     </div>
 {% endblock %}

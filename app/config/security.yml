@@ -27,6 +27,7 @@ security:
             logout:
                 path:   /logout
                 target: /
+            access_denied_url:    /login # Example: /foo/error403
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"

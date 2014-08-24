@@ -105,8 +105,10 @@ class ProductController extends Controller
      * Finds and displays a Product entity.
      *
      */
-    public function showAction($id)
+    public function showAction(Request $request ,$id)
     {
+        $req= $request->server->get('HTTP_REFERER');
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DDShopBundle:Product')->find($id);
@@ -120,6 +122,7 @@ class ProductController extends Controller
         return $this->render('DDShopBundle:Product:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'req' => $req,
         ));
     }
 

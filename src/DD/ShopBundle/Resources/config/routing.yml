@@ -26,7 +26,7 @@ account_create:
     path:     /register/create
     defaults: { _controller: DDShopBundle:Account:create }
 login:
-    path:     /login
+    path: /login
     defaults: { _controller: DDShopBundle:Login:login }
 login_to:
     path:     /login/welcom
@@ -62,3 +62,6 @@ locale:
 hierarchy:
     resource: "@DDShopBundle/Resources/config/routing/hierarchy.yml"
     prefix:   /hierarchy
+catalog_search:
+    path: /catalog/search
+    defaults: { _controller: DDShopBundle:Catalog:search }

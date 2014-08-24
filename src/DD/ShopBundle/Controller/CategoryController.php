@@ -1,20 +1,15 @@
 <?php
-
 namespace DD\ShopBundle\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use DD\ShopBundle\Entity\Category;
 use DD\ShopBundle\Form\CategoryType;
-
 /**
  * Category controller.
  *
  */
 class CategoryController extends Controller
 {
-
     /**
      * Lists all Category entities.
      *
@@ -22,16 +17,13 @@ class CategoryController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $entities = $em->getRepository('DDShopBundle:Category')->findAll();
-
         $paginator = $this->get('knp_paginator');
         $entities = $paginator->paginate(
             $entities,
             $this->get('request')->query->get('page', 1)/*page number*/,
             10/*limit per page*/
         );
-
         return $this->render('DDShopBundle:Category:index.html.twig', array(
             'entities' => $entities,
         ));
@@ -45,21 +37,17 @@ class CategoryController extends Controller
         $entity = new Category();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
             return $this->redirect($this->generateUrl('category_show', array('id' => $entity->getId())));
         }
-
         return $this->render('DDShopBundle:Category:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
-
     /**
      * Creates a form to create a Category entity.
      *
@@ -73,12 +61,9 @@ class CategoryController extends Controller
             'action' => $this->generateUrl('category_create'),
             'method' => 'POST',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Create'));
-
         return $form;
     }
-
     /**
      * Displays a form to create a new Category entity.
      *
@@ -86,14 +71,12 @@ class CategoryController extends Controller
     public function newAction()
     {
         $entity = new Category();
-        $form   = $this->createCreateForm($entity);
-
+        $form = $this->createCreateForm($entity);
         return $this->render('DDShopBundle:Category:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
-
     /**
      * Finds and displays a Category entity.
      *
@@ -101,21 +84,16 @@ class CategoryController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('DDShopBundle:Category')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('DDShopBundle:Category:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Displays a form to edit an existing Category entity.
      *
@@ -123,39 +101,32 @@ class CategoryController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('DDShopBundle:Category')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
-
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('DDShopBundle:Category:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
-    * Creates a form to edit a Category entity.
-    *
-    * @param Category $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Category entity.
+     *
+     * @param Category $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Category $entity)
     {
         $form = $this->createForm(new CategoryType(), $entity, array(
             'action' => $this->generateUrl('category_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Update'));
-
         return $form;
     }
     /**
@@ -165,26 +136,20 @@ class CategoryController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('DDShopBundle:Category')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
         if ($editForm->isValid()) {
             $em->flush();
-
             return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
         }
-
         return $this->render('DDShopBundle:Category:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -196,22 +161,17 @@ class CategoryController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('DDShopBundle:Category')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Category entity.');
             }
-
             $em->remove($entity);
             $em->flush();
         }
-
         return $this->redirect($this->generateUrl('category'));
     }
-
     /**
      * Creates a form to delete a Category entity by id.
      *
@@ -226,6 +186,6 @@ class CategoryController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;
+            ;
     }
 }

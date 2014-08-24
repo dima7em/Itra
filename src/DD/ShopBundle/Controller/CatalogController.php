@@ -32,7 +32,6 @@ class CatalogController extends Controller
             if($sort){
                 $eml = $this->getDoctrine()->getRepository('DDShopBundle:Product');
                 $products = $eml->findAllOrderByParam($id,$sort,$direction);
-
             }
             /*make pagination for products*/
             $paginator = $this->get('knp_paginator');
@@ -45,21 +44,17 @@ class CatalogController extends Controller
         }
     }
     public function searchAction(Request $request){
-
         $req= $request->server->get('HTTP_REFERER');
         preg_match('/[^id=]+(?=&)/',$req, $matches);
-
         if(!$matches){
             preg_match('/[^id=]+$/',$req, $matches);
-
         }
         if($matches){
-
             $id = $matches[0];
             $search = $_POST['search'];
             $repository = $this->getDoctrine()->getRepository('DDShopBundle:Product');
             $products = $repository->findBy(array('category'=>$id,'name'=>$search));
-                if($products){
+            if($products){
                 $paginator = $this->get('knp_paginator');
                 $pagination = $paginator->paginate(
                     $products,
@@ -70,10 +65,8 @@ class CatalogController extends Controller
             }
             $pagination='1';
             return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
-
         }
         $pagination='';
         return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
-
     }
 }

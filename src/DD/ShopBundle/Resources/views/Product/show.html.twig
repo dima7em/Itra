@@ -2,9 +2,6 @@
 
 {% block content -%}
     <h1>Product</h1>
-    <a href="{{ path('catalog') }}">
-    <h3>Back to the Catalog</h3>
-</a>
 
     <table class="table table-striped table-hover">
         <tbody>
@@ -44,7 +41,7 @@
             </tr>
         </tbody>
     </table>
-{% if is_granted('ROLE_MODERATOR') %}
+
         <ul class="record_actions">
     <li>
         <a href="{{ path('product') }}">
@@ -56,9 +53,6 @@
             Edit
         </a>
     </li>
-    {% if is_granted('ROLE_ADMIN') %}
     <li>{{ form(delete_form) }}</li>
-    {% endif %}
 </ul>
-{% endif %}
 {% endblock %}

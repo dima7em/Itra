@@ -25,13 +25,6 @@ class RoleController extends Controller
 
         $entities = $em->getRepository('DDShopBundle:Role')->findAll();
 
-        $paginator = $this->get('knp_paginator');
-        $entities = $paginator->paginate(
-            $entities,
-            $this->get('request')->query->get('page', 1)/*page number*/,
-            10/*limit per page*/
-        );
-
         return $this->render('DDShopBundle:Role:index.html.twig', array(
             'entities' => $entities,
         ));

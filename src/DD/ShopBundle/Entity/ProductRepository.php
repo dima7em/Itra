@@ -1,9 +1,6 @@
 <?php
-
 namespace DD\ShopBundle\Entity;
-
 use Doctrine\ORM\EntityRepository;
-
 /**
  * ProductRepository
  *
@@ -18,9 +15,7 @@ class ProductRepository extends EntityRepository
             ->orderBy($sort, $description)
             ->getQuery();
         return $sorted= $q->getResult();
-
     }
-
     public function findallByName($id,$search){
         $q = $this->createQueryBuilder('p')
             ->addCriteria('p.category ='.$id )
@@ -28,7 +23,4 @@ class ProductRepository extends EntityRepository
             ->getQuery();
         return $sorted= $q->getResult();
     }
-
-
-
 }

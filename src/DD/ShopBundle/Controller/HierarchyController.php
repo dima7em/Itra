@@ -176,8 +176,10 @@ class HierarchyController extends Controller
         $high_level_categories = $this ->getDoctrine()
             ->getRepository('DDShopBundle:Category')
             ->getHighCategory($level, $resource_id);
-
-        return [$entity, $high_level_categories];
+        $a=array();
+        $a[0]=$entity;
+        $a[1]=$high_level_categories;
+        return $a;
     }
 
     private function findLowCategory(Request $request)

@@ -31,13 +31,8 @@ class CatalogController extends Controller
             }
             /*sort products */
             if($sort){
-                $index = array();
-
-                foreach($products as $a){
-                $mass = array($a->getName()=>$a);
-                }
-                array_multisort($mass, SORT_STRING);
-                $products = $mass;
+                $eml = $this->getDoctrine()->getRepository('DDShopBundle:Product');
+                $products = $eml->findAllOrderByParam($id,$sort,$direction);
 
             }
             /*make pagination for products*/
@@ -49,5 +44,37 @@ class CatalogController extends Controller
             );
             return $this->render('DDShopBundle:Catalog:main.html.twig', array('products'=>$pagination));
         }
+    }
+    public function searchAction(Request $request){
+
+        $req= $request->server->get('HTTP_REFERER');
+        preg_match('/[^id=]+(?=&)/',$req, $matches);
+
+        if(!$matches){
+            preg_match('/[^id=]+$/',$req, $matches);
+
+        }
+        if($matches){
+
+            $id = $matches[0];
+            $search = $_POST['search'];
+            $repository = $this->getDoctrine()->getRepository('DDShopBundle:Product');
+            $products = $repository->findBy(array('category'=>$id,'name'=>$search));
+            if($products){
+                $paginator = $this->get('knp_paginator');
+                $pagination = $paginator->paginate(
+                    $products,
+                    $this->get('request')->query->get('page', 1)/*page number*/,
+                    5/*limit per page*/
+                );
+                return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
+            }
+            $pagination='1';
+            return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
+
+        }
+        $pagination='';
+        return $this->render('DDShopBundle:Catalog:search.html.twig', array('products'=>$pagination));
+
     }
 }

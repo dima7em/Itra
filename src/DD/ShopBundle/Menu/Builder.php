@@ -34,6 +34,16 @@ class Builder extends ContainerAware
 
         return $menu;
     }
+    public function moderMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'dropdown-menu');
+        $menu->addChild('Show Resource', array('route' => 'resource'));
+        $menu->addChild('Show Category', array('route' => 'category'));
+        $menu->addChild('Show Product', array('route' => 'product'));
+
+        return $menu;
+    }
     public function accountMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');

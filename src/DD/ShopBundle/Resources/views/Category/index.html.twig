@@ -2,6 +2,9 @@
 
 {% block content -%}
     <h1>Category list</h1>
+    <div class="count">
+        This category have {{ entities.getTotalItemCount }} products :)
+    </div>
 
     <table class="records_list">
         <thead>
@@ -36,6 +39,9 @@
         {% endfor %}
         </tbody>
     </table>
+    <div>
+        {{ knp_pagination_render(entities) }}
+    </div>
 
         <ul>
         <li>

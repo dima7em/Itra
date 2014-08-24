@@ -23,6 +23,19 @@
         <p>
         <button class="btn btn-login" type="submit">login</button>
     </form>
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('account_register') }}">
+                  <h4>Registration</h4>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('replacepass') }}">
+                   <h5>Forgot password</h5>
+                </a>
+            </li>
+        </ul>
+
     </div>
 </div>
 {% endblock %}

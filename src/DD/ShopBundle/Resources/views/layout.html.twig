@@ -31,8 +31,8 @@
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
                                     {{ knp_menu_render('DDShopBundle:Builder:adminMenu', {'currentClass':'active', 'template':'DDShopBundle:Menu:style.html.twig'}) }}
-                                {% endif %}
-                                {% if is_granted('ROLE_MODERATOR') %}
+                                {% elseif is_granted('ROLE_MODERATOR')%}
+
                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Moderator <b class="caret"></b></a>
                                     {{ knp_menu_render('DDShopBundle:Builder:moderMenu', {'currentClass':'active', 'template':'DDShopBundle:Menu:style.html.twig'}) }}
                                 {% endif %}

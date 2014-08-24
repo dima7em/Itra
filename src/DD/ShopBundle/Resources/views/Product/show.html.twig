@@ -41,7 +41,7 @@
             </tr>
         </tbody>
     </table>
-
+    {% if is_granted('ROLE_MODERATOR') %}
         <ul class="record_actions">
     <li>
         <a href="{{ path('product') }}">
@@ -53,6 +53,9 @@
             Edit
         </a>
     </li>
-    <li>{{ form(delete_form) }}</li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>{{ form(delete_form) }}</li>
+            {% endif %}
 </ul>
+    {% endif %}
 {% endblock %}

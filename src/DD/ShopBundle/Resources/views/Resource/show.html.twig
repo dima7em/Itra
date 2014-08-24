@@ -19,7 +19,7 @@
             </tr>
         </tbody>
     </table>
-
+{% if is_granted('ROLE_Moderator') %}
         <ul class="record_actions">
     <li>
         <a href="{{ path('resource') }}">
@@ -31,6 +31,9 @@
             Edit
         </a>
     </li>
-    <li>{{ form(delete_form) }}</li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>{{ form(delete_form) }}</li>
+            {% endif %}
 </ul>
+{% endif %}
 {% endblock %}

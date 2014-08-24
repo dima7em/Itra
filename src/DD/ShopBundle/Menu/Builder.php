@@ -14,7 +14,7 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
-        $menu->addChild('Home', array('route' => 'index'));
+        $menu->addChild('Home', array('route' => 'dd_shop_homepage'));
         //$menu->addChild('Catalog', array('route' => 'catalog'));
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {

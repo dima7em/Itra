@@ -19,7 +19,6 @@ class CategoryRepository extends EntityRepository
             c WHERE c.resource = :resource AND c.level < :level ORDER BY c.level ASC ")
             ->setParameters(array('level'=>$level, 'resource'=>$resource));
 
-
         return $query->getResult();
     }
 
@@ -39,7 +38,16 @@ class CategoryRepository extends EntityRepository
             c WHERE c.resource = :resource ORDER BY c.level ASC ")
             ->setParameters(array('resource'=>$resource));
 
+        return $query->getResult();
+    }
+    public function getMaxLevel($resource)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT MAX(c.level) FROM DDShopBundle:Category
+            c WHERE c.resource = :resource")
+            ->setParameter('resource', $resource);
 
         return $query->getResult();
     }
+
 }

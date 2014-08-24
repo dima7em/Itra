@@ -84,15 +84,6 @@ class ReplacepassController extends Controller
         return $this->redirect($this->generateUrl('message'));
     }
 
-    public function messageAction(){
-        return $this->render('DDShopBundle:Replacepass:message.html.twig');
-    }
-
-    public function errorAction(){
-        return $this->render('DDShopBundle:Replacepass:error.html.twig');
-    }
-
-
     public function newAction(Request $request, $id, $passkey){
 
         $repository = $this->getDoctrine()->getRepository('DDShopBundle:User');
@@ -123,7 +114,7 @@ class ReplacepassController extends Controller
             $url = $request->getHttpHost().$this->generateUrl('replacepass');
             $this->get('session')->getFlashBag()
                 ->add('notice', "Most likely your link invalid!
-                                 <a href=http://". $url.">Try to generate a new page:</a>");
+                                 <a href=http://". $url.">Try to generate a new page!</a>");
             //$form=$this->createReplacePassForm();
             return $this->render('DDShopBundle:Replacepass:error.html.twig');
         }
@@ -140,4 +131,13 @@ class ReplacepassController extends Controller
             ->getForm();
         return $form;
     }
+
+    public function messageAction(){
+        return $this->render('DDShopBundle:Replacepass:message.html.twig');
+    }
+
+    public function errorAction(){
+        return $this->render('DDShopBundle:Replacepass:error.html.twig');
+    }
+
 }

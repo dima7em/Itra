@@ -52,6 +52,8 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->setDate(new \DateTime());
+            $entity->setLastdate(new \DateTime());
             if($entity->getSrc()){
                 $img =$this->cloudinary($entity->getSrc());
                 $url=$img['url'];
@@ -188,7 +190,8 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('DDShopBundle:Product')->find($id);
         $default_src = $entity->getSrc();
-
+        $entity->setDate($entity->getDate());
+        $entity->setLastdate(new \DateTime());
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }

@@ -38,6 +38,9 @@ class CategoryController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $level = $this->getDoctrine()->getRepository('DDShopBundle:Category')
+                ->getMaxLevel($entity->getResource()->getId());
+            $entity->setLevel(++$level[0][1]);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -144,6 +147,9 @@ class CategoryController extends Controller
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
+            $level = $this->getDoctrine()->getRepository('DDShopBundle:Category')
+                ->getMaxLevel($entity->getResource()->getId());
+            $entity->setLevel(++$level[0][1]);
             $em->flush();
             return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
         }

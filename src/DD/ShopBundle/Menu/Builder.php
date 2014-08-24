@@ -20,10 +20,7 @@ class Builder extends ContainerAware
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $menu->addChild('Catalog', array('route' => 'catalog'));
         }
-
-
         return $menu;
-
     }
     public function adminMenu(FactoryInterface $factory, array $options)
     {

@@ -18,8 +18,6 @@ class ProductType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('src')
-            ->add('date')
-            ->add('lastdate')
             ->add('flag')
             ->add('category')
         ;

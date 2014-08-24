@@ -1,5 +1,4 @@
 {% extends 'DDShopBundle::layout.html.twig' %}
-
 {% block content -%}
     <h1>Product list</h1>
     <div class="count">
@@ -7,16 +6,16 @@
     </div>
     <table class="table table-striped table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Src</th>
-                <th>Date</th>
-                <th>Lastdate</th>
-                <th>Flag</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Src</th>
+            <th>Date</th>
+            <th>Lastdate</th>
+            <th>Flag</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
@@ -24,19 +23,26 @@
                 <td><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
-                <td>{% if entity.src %}<img src="{{ entity.src }}"/>{% endif %}</td>
+                <td>{% if entity.src matches '{res.cloudinary.com/localhost-all-web/}'%}
+                        <img src="{{ entity.src }}"/>
+                    {% else %}
+                        {% image '@DDShopBundle/Resources/public/images/noimage.jpg' %}
+                        <img src="{{ asset_url }}"/>
+                        {% endimage %}
+                    {% endif %}
+                </td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.lastdate %}{{ entity.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.flag }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('product_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('product_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <ul>
+                        <li>
+                            <a href="{{ path('product_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('product_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}
@@ -45,12 +51,11 @@
     <div>
         {{ knp_pagination_render(entities) }}
     </div>
-
-        <ul>
+    <ul>
         <li>
             <a href="{{ path('product_new') }}">
                 Create a new entry
             </a>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}

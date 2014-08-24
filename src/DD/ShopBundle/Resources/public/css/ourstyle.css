@@ -63,3 +63,8 @@ span .tree-toggle.nav-header.tree-toggler{
     margin: 5px;
     font-size: 0.9em;
 }
+.list.span2.right{
+    float: left;
+    margin-left: 0px;
+    margin-right: 70px;
+}

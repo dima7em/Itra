@@ -29,7 +29,7 @@ class Builder extends ContainerAware
         $menu->addChild('Show User', array('route' => 'user'));
         $menu->addChild('Show Role', array('route' => 'role'));
         $menu->addChild('Show Resource', array('route' => 'resource'));
-        $menu->addChild('Show Category', array('route' => 'category'));
+        $menu->addChild('Show Category', array('route' => 'hierarchy'));
         $menu->addChild('Show Product', array('route' => 'product'));
 
         return $menu;

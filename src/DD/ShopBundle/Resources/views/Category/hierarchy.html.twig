@@ -2,10 +2,14 @@
 {% block content %}
     {{ parent() }}
     {% block tree %}
+<div class="list span2 right">
         {{  render(controller("DDShopBundle:Categorytree:adminTree"))|raw }}
+    </div>
     {% endblock %}
     {% block category %}
-        {#{{  render(controller("DDShopBundle:Category:index")) }}#}
+        <div class="list span9 right">
+            {{  render(controller("DDShopBundle:Category:index")) }}
+        </div>
     {% endblock %}
 
 {% endblock %}

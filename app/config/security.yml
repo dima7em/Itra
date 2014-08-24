@@ -10,7 +10,7 @@ security:
 
     providers:
         main:
-            entity: { class: DD\ShopBundle\Entity\User, property: username }
+            entity: { class: DD\ShopBundle\Entity\User, property: email }
 
     firewalls:
         dev:

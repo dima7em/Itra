@@ -203,6 +203,9 @@ class HierarchyController extends Controller
             ->getRepository('DDShopBundle:Category')
             ->getLowCategory($level, $resource_id);
 
-        return [$entity, $high_level_categories];
+        $a=array();
+        $a[0]=$entity;
+        $a[1]=$high_level_categories;
+        return $a;
     }
 }

@@ -1,4 +1,4 @@
-index:
+hierarchy:
     path:     /
     defaults: { _controller: "DDShopBundle:Hierarchy:index" }
 next:

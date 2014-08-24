@@ -59,9 +59,9 @@ show:
 locale:
     path: /locale
     defaults: { _controller: DDShopBundle:Locale:locale }
-hierarchy:
+DDShopBundle_hierarchy:
     resource: "@DDShopBundle/Resources/config/routing/hierarchy.yml"
-    prefix:   /hierarchy
+    prefix: /hierarchy
 catalog_search:
     path: /catalog/search
     defaults: { _controller: DDShopBundle:Catalog:search }

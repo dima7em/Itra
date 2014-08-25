@@ -80,3 +80,4 @@ DD\ShopBundle\Entity\Product:
           category:
               - NotBlank:
                   message: "This value shoul not be blank."
+          

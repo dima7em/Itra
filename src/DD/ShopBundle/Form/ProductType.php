@@ -18,7 +18,6 @@ class ProductType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('src')
-            ->add('flag')
             ->add('category')
             ->add('product', 'entity', array(
                 'required' =>false,
@@ -26,6 +25,7 @@ class ProductType extends AbstractType
                 'property' => 'name',
                 'multiple' => 'true',
             ))
+            ->add('flag')
         ;
     }
     

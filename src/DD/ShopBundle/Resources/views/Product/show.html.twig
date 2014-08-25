@@ -21,12 +21,13 @@
             </tr>
             <tr>
                 <th>Src</th>
-                <td>
-                    {% if entity.src == true %}
+                <td>{% if entity.src matches '{res.cloudinary.com/localhost-all-web/}'%}
                         <img src="{{ entity.src }}"/>
                     {% else %}
-                        {{ entity.src }}
-                    {% endif  %}
+                        {% image '@DDShopBundle/Resources/public/images/noimage.jpg' %}
+                        <img src="{{ asset_url }}"/>
+                        {% endimage %}
+                    {% endif %}
                 </td>
             </tr>
             <tr>

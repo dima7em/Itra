@@ -30,7 +30,14 @@
                 <tbody>
                 {% for product in products %}
                     <tr onClick="document.location='{{ path('product_show', { 'id': product.id }) }}'">
-                        <td>{% if product.src %}<img class="img-rounded" style="height: 100px;width: 100px" src="{{ product.src }}"/>{% endif %}</td>
+                        <td>{% if product.src matches '{res.cloudinary.com/localhost-all-web/}'%}
+                                <img src="{{ product.src }}"/>
+                            {% else %}
+                                {% image '@DDShopBundle/Resources/public/images/noimage.jpg' %}
+                                <img src="{{ asset_url }}"/>
+                                {% endimage %}
+                            {% endif %}
+                        </td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.description }}</td>
 

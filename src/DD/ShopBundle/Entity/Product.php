@@ -240,5 +240,6 @@ class Product
     public function getProduct()
     {
         return $this->product;
+      // return var_dump($this->product);
     }
 }

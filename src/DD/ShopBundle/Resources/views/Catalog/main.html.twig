@@ -20,9 +20,11 @@
                         {{ knp_pagination_sortable(products, 'or Z-A', 'p.name', {'direction': 'DESC'}) }}
                     </th>
                     <th>Description</th>
-                    <th>Date</th>
+
                     <th>Lastdate</th>
+                    {% if is_granted('ROLE_MODERATOR') %}
                     <th>Actions</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -31,8 +33,9 @@
                         <td>{% if product.src %}<img class="img-rounded" style="height: 100px;width: 100px" src="{{ product.src }}"/>{% endif %}</td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.description }}</td>
-                        <td>{% if product.date %}{{ product.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+
                         <td>{% if product.lastdate %}{{ product.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        {% if is_granted('ROLE_MODERATOR') %}
                         <td>
                             <ul>
                                 <li>
@@ -40,6 +43,7 @@
                                 </li>
                             </ul>
                         </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>

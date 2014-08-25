@@ -37,7 +37,9 @@ security:
         - { path: /role, roles: ROLE_ADMIN}
         - { path: /category, roles: ROLE_MODERATOR}
         - { path: /hierarchy, roles: ROLE_MODERATOR}
-        - { path: /product, roles: ROLE_USER}
+        - { path: /edit, roles: ROLE_MODERATOR}
+        - { path: /create, roles: ROLE_MODERATOR}
+        - { path: /new, roles: ROLE_MODERATOR}
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: /index, roles: ROLE_USER}
         - { path: /catalog, roles: ROLE_USER}

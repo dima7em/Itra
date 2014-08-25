@@ -5,7 +5,7 @@ next:
     path:     /next/{resource}/{name}
     defaults: { _controller: "DDShopBundle:Hierarchy:categoryNext" }
 menu:
-    path:     /menu/{name}
+    path:     /menu/{name}/{position}
     defaults: { _controller: "DDShopBundle:Hierarchy:menu" }
 menu_li:
     path:     /li/{resource}

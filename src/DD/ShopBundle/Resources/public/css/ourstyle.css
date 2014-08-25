@@ -68,3 +68,6 @@ span .tree-toggle.nav-header.tree-toggler{
     margin-left: 0px;
     margin-right: 70px;
 }
+.nav.nav-list.tree li{
+    list-style-type: none;
+}

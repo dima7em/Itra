@@ -130,8 +130,10 @@ class HierarchyController extends Controller
     public function menuAction(Request $request)
     {
         $name = $request->get('name');
+        $position = $request->get('position');
         return $this->render('DDShopBundle:Category:levelcontrole.html.twig',
-            array("category"=>$name));
+            array("category"=>$name,
+                  "position"=>$position));
     }
     public function hierarchyAction(Request $request)
     {

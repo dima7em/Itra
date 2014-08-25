@@ -22,9 +22,20 @@
             ajax();
             function ajax() {
                 $('#dLabel b').click(function(){
-                    var category = $(this).parent().parent().attr('id')
-                    //alert($(this).parent().parent().parent().attr('id'));
-                    $(this).parent().parent().load(document.URL+'menu/'+category, function(){ajaxLi()});})
+                    var selector = $(this).parent().parent();
+                    var category = selector.attr('id');
+                    var position;
+                    if(selector.parent().children().first().attr('id') == category)
+                    {
+                        position = 'first';
+                    }
+                    else if(selector.parent().children().last().attr('id') == category)
+                    {
+                        position = 'last';
+                    }
+                    else position = 'center';
+
+                    $(this).parent().parent().load(document.URL+'menu/'+category+'/'+position, function(){ajaxLi()});})
                 function ajaxLi(){
                 $('.btn').click(function(){
                     var category = $(this).parent().parent().attr('id');
@@ -32,7 +43,12 @@
                     var metod = $(this).attr('id');
                     //alert(metod+':'+resource+':'+category);
                     //alert(document.URL+'/'+metod+'/'+resource+'/'+category)
-                    $(this).parent().parent().parent().load(document.URL+metod+'/'+resource+'/'+category, function(){ajax()})
+                    $(this).parent().parent().parent()
+                            .load(document.URL+metod+'/'+resource+'/'+category,
+                                       function(){
+                                                    ajax()
+                                                  }
+                                  );
             })};
         }
         })

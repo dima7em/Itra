@@ -23,10 +23,12 @@
 
                     <th>Description</th>
 
-                    <th>Date</th>
+
                     <th>Lastdate</th>
 
-                    <th>Actions</th>
+                    {% if is_granted('ROLE_MODERATOR') %}
+                        <th>Actions</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -35,17 +37,18 @@
                         <td>{% if product.src %}<img class="img-rounded" style="height: 100px;width: 100px" src="{{ product.src }}"/>{% endif %}</td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.description }}</td>
-                        <td>{% if product.date %}{{ product.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+
                         <td>{% if product.lastdate %}{{ product.lastdate|date('Y-m-d H:i:s') }}{% endif %}</td>
 
-                        <td>
-                            <ul>
-
-                                <li>
-                                    <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
+                        {% if is_granted('ROLE_MODERATOR') %}
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>

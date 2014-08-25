@@ -20,6 +20,12 @@ class ProductType extends AbstractType
             ->add('src')
             ->add('flag')
             ->add('category')
+            ->add('product', 'entity', array(
+                'required' =>false,
+                'class' => 'DDShopBundle:Product',
+                'property' => 'name',
+                'multiple' => 'true',
+            ))
         ;
     }
     

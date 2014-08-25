@@ -309,6 +309,7 @@ class ProductController extends Controller
             ($src = $match[0]);
             return $src;
         }
+        else return false;
     }
     private function saveSrc(Request $request,Product $entity,$src){
         $file_type = $request->files->get('dd_shopbundle_product');

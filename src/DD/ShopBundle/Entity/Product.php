@@ -191,4 +191,54 @@ class Product
     {
         return $this->category;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $products;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $product;
+
+
+    /**
+     * Add product
+     *
+     * @param \DD\ShopBundle\Entity\Product $product
+     * @return Product
+     */
+    public function addProduct(\DD\ShopBundle\Entity\Product $product)
+    {
+        $this->product[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \DD\ShopBundle\Entity\Product $product
+     */
+    public function removeProduct(\DD\ShopBundle\Entity\Product $product)
+    {
+        $this->product->removeElement($product);
+    }
+
+    /**
+     * Get product
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
 }

@@ -14,11 +14,13 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
-        $menu->addChild('Home', array('route' => 'dd_shop_homepage'));
+        $home = $this->container->get('translator')->trans('Home');
+        $menu->addChild($home, array('route' => 'dd_shop_homepage'));
         //$menu->addChild('Catalog', array('route' => 'catalog'));
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            $menu->addChild('Catalog', array('route' => 'catalog'));
+            $catalog = $this->container->get('translator')->trans('Catalog');
+            $menu->addChild($catalog, array('route' => 'catalog'));
         }
         return $menu;
     }

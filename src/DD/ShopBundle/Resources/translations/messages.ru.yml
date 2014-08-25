@@ -1,5 +1,29 @@
-fuck: черт
 user: пользователь
+User: Пользователь
 Username: Имя пользователя
-Create Post: чет там
+Description: Описание
+Level: Уровень
+Actions: Действия
+Name: Имя
 Create: Создать
+Update: Изменить
+Delete: Удалить
+Resource: Ресурсы
+Flag: Флаг
+Firstname: Имя
+Lastname: Фамилия
+Password: Пароль
+Role: Роль
+Back to the list: Верниться назад
+Delete img: Удалить изображение
+Src: изображение
+Category: Категория
+Home: Домашняя
+Catalog: Каталог
+Admin: Администратор
+edit: измнить
+Show User: Пользователя
+Show Role: Роли
+Show Resource: Ресурсы
+Show Category: Категории
+Show Product: Продукты

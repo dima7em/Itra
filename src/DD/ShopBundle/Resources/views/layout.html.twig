@@ -19,18 +19,18 @@
                 <!-- Everything you want hidden at 940px or less, place within here -->
                 <div class="nav-collapse collapse">
                     <div class="nav navbar-nav">
-                        {{ knp_menu_render('DDShopBundle:Builder:mainMenu', {'currentClass':'active'}) }}
+                        {{ knp_menu_render('DDShopBundle:Builder:mainMenu', {'currentClass':'active'})}}
 
                     </div>
 
                         <ul class="nav navbar-nav" id="navbar-right">
                             <li class="dropdown">
-                            {{ knp_menu_render('DDShopBundle:Builder:accountMenu') }}
+                            {{ knp_menu_render('DDShopBundle:Builder:accountMenu')}}
                             </li>
                             <li class="dropdown">
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
-                                    {{ knp_menu_render('DDShopBundle:Builder:adminMenu', {'currentClass':'active', 'template':'DDShopBundle:Menu:style.html.twig'}) }}
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Admin<b class="caret"></b></a>
+                                    {{ knp_menu_render('DDShopBundle:Builder:adminMenu', {'currentClass':'active', 'template':'DDShopBundle:Menu:style.html.twig'})|trans|raw }}
                                 {% elseif is_granted('ROLE_MODERATOR')%}
 
                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Moderator <b class="caret"></b></a>

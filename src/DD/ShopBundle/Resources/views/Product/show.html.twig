@@ -43,7 +43,7 @@
                 <td>
                     <ul>
                     {% for product in entity.product %}
-                        <li><a href="{{path('product_edit',{'id':product.id|lower })}}">{{ product.name }}</a></li>
+                        <li><a href="{{path('product_show',{'id':product.id|lower })}}">{{ product.name }}</a></li>
                     {% endfor %}
                     </ul>
                 </td>

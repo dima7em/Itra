@@ -80,4 +80,7 @@ DD\ShopBundle\Entity\Product:
           category:
               - NotBlank:
                   message: "This value shoul not be blank."
-          
+          product:
+              - Count:
+                  max: 3
+                  maxMessage: 'Your cannot more than {{ limit }} products'

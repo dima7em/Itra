@@ -1,6 +1,9 @@
 dd_shop_homepage:
     path:     /
     defaults: { _controller: DDShopBundle:Default:index }
+homepage:
+    path:     /home
+    defaults: { _controller: DDShopBundle:Home:index }
 
 DDShopBundle_category:
     resource: "@DDShopBundle/Resources/config/routing/category.yml"
